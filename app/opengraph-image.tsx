@@ -1,6 +1,4 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { fetchLatestRelease } from "@/lib/github";
 
 export const runtime = "nodejs";
@@ -11,10 +9,14 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Load the logo bundled alongside this module (works on Vercel serverless).
+// `public/` is not bundled into functions, so the asset must live in the
+// source tree — here, colocated with this route.
 async function getLogoDataUrl(): Promise<string | null> {
   try {
-    const filePath = path.join(process.cwd(), "public", "icon-256.png");
-    const buf = await readFile(filePath);
+    const res = await fetch(new URL("./og-logo.png", import.meta.url));
+    if (!res.ok) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
     return `data:image/png;base64,${buf.toString("base64")}`;
   } catch {
     return null;
