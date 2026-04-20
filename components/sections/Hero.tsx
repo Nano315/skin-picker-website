@@ -4,12 +4,23 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github, Shield, Sparkles } from "lucide-react";
 import type { ReleaseInfo } from "@/lib/github";
 import { formatDate } from "@/lib/utils";
+import type { Dict } from "@/lib/i18n/dict";
+import type { Lang } from "@/lib/i18n/types";
 import DownloadButton from "@/components/ui/DownloadButton";
 import GradientText from "@/components/ui/GradientText";
 import ScreenshotFrame from "@/components/ui/ScreenshotFrame";
 
-export default function Hero({ release }: { release: ReleaseInfo }) {
+export default function Hero({
+  release,
+  dict,
+  lang,
+}: {
+  release: ReleaseInfo;
+  dict: Dict;
+  lang: Lang;
+}) {
   const reduced = useReducedMotion();
+  const t = dict.hero;
 
   return (
     <section className="relative pt-32 pb-10 sm:pt-40 sm:pb-14">
@@ -31,9 +42,9 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-strong" />
             </span>
-            <span className="text-muted">Latest release</span>
+            <span className="text-muted">{t.latestRelease}</span>
             <span className="font-semibold">
-              {release.version ? `v${release.version}` : "Check GitHub"}
+              {release.version ? `v${release.version}` : t.checkGithub}
             </span>
             <ArrowRight className="h-3 w-3 text-muted transition-transform group-hover:translate-x-0.5" />
           </a>
@@ -45,9 +56,9 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
           transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="text-balance text-center text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-[88px] lg:leading-[0.95]"
         >
-          Your next skin,
+          {t.titleLine1}
           <br />
-          <GradientText>already picked.</GradientText>
+          <GradientText>{t.titleLine2}</GradientText>
         </motion.h1>
 
         <motion.p
@@ -56,9 +67,7 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-7 max-w-2xl text-balance text-center text-lg leading-relaxed text-muted sm:text-xl"
         >
-          Skin Picker auto-rolls, rerolls, and synchronizes League of Legends
-          skins across your team during champ select. Zero config, runs in the
-          tray, goes quiet in-game.
+          {t.subtitle}
         </motion.p>
 
         <motion.div
@@ -67,7 +76,7 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
           transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <DownloadButton release={release} />
+          <DownloadButton release={release} dict={dict} />
           <a
             href="https://github.com/Nano315/lol-skin-picker"
             target="_blank"
@@ -75,7 +84,7 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-4 text-sm font-medium text-ink/90 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/[0.06]"
           >
             <Github className="h-4 w-4" />
-            View on GitHub
+            {t.viewGithub}
           </a>
         </motion.div>
 
@@ -87,14 +96,16 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
         >
           <span className="inline-flex items-center gap-1.5">
             <Shield className="h-3.5 w-3.5" />
-            Free & open-source
+            {t.free}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Sparkles className="h-3.5 w-3.5" />
-            Auto-updates built-in
+            {t.autoUpdates}
           </span>
           {release.publishedAt && (
-            <span>Updated {formatDate(release.publishedAt)}</span>
+            <span>
+              {t.updated} {formatDate(release.publishedAt, lang)}
+            </span>
           )}
         </motion.div>
 
@@ -111,7 +122,7 @@ export default function Hero({ release }: { release: ReleaseInfo }) {
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d12] shadow-[0_30px_120px_-20px_rgba(139,92,246,0.5)] backdrop-blur-md">
             <ScreenshotFrame
               src="/screenshots/hero.png"
-              alt="Skin Picker app home screen with bento grid and champion skin preview"
+              alt={t.screenshotAlt}
               aspect="1266/735"
               priority
               fallback={<HeroPlaceholder />}

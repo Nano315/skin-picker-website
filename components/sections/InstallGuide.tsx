@@ -2,62 +2,56 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Info, MousePointerClick, Shield, ShieldCheck } from "lucide-react";
+import type { Dict } from "@/lib/i18n/dict";
 import Reveal from "@/components/ui/Reveal";
 import ScreenshotFrame from "@/components/ui/ScreenshotFrame";
 
-const STEPS = [
+const STEP_META = [
   {
-    n: "01",
-    title: "Run the installer",
-    body: "Double-click the file you just downloaded. Windows SmartScreen will show a warning screen because the app isn't code-signed yet — that's normal at this stage.",
     icon: MousePointerClick,
     screenshot: "/screenshots/win-1.png",
-    cue: { label: "More info", at: { x: 32, y: 70 } },
-    placeholder: <WinPlaceholderA />,
+    placeholder: (dict: Dict) => <WinPlaceholderA dict={dict} />,
   },
   {
-    n: "02",
-    title: "Click \u201cMore info\u201d",
-    body: "SmartScreen hides the Run button by default. Click the small \u201cMore info\u201d link — the publisher details then expand and the Run anyway button appears.",
     icon: Info,
     screenshot: "/screenshots/win-2.png",
-    cue: { label: "Run anyway", at: { x: 28, y: 76 } },
-    placeholder: <WinPlaceholderB />,
+    placeholder: (dict: Dict) => <WinPlaceholderB dict={dict} />,
   },
   {
-    n: "03",
-    title: "Click \u201cRun anyway\u201d",
-    body: "The installer launches and sets up Skin Picker like any other Windows app. From now on, updates are automatic — no more warning, no more re-download.",
     icon: ShieldCheck,
-    screenshot: null,
-    cue: null,
-    placeholder: <WinPlaceholderC />,
+    screenshot: null as string | null,
+    placeholder: (dict: Dict) => <WinPlaceholderC dict={dict} />,
   },
-];
+] as const;
 
-export default function InstallGuide() {
+export default function InstallGuide({ dict }: { dict: Dict }) {
+  const t = dict.install;
+
   return (
     <section id="install" className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-muted">
             <Shield className="h-3.5 w-3.5" />
-            Install in 30 seconds
+            {t.eyebrow}
           </div>
           <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-            About the Windows warning
+            {t.title}
           </h2>
           <p className="mt-5 text-balance text-lg leading-relaxed text-muted">
-            Skin Picker is a small personal project, not signed with a paid
-            Microsoft certificate yet. Windows shows a safety warning for any
-            unsigned app — it doesn&apos;t mean the app is unsafe. Here&apos;s
-            how to get through it.
+            {t.intro}
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {STEPS.map((step, idx) => (
-            <StepCard key={step.n} step={step} index={idx} />
+          {t.steps.map((step, idx) => (
+            <StepCard
+              key={step.n}
+              step={step}
+              meta={STEP_META[idx]}
+              index={idx}
+              dict={dict}
+            />
           ))}
         </div>
 
@@ -67,12 +61,9 @@ export default function InstallGuide() {
               <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-strong" />
               <p>
                 <strong className="font-semibold text-ink">
-                  Transparency:
+                  {t.transparencyLabel}
                 </strong>{" "}
-                the entire source code is public on GitHub. You can read it,
-                build it yourself, or audit every release. The installer is
-                published automatically from the repo via GitHub Actions — no
-                manual handling, no hidden binaries.
+                {t.transparencyBody}
               </p>
             </div>
           </div>
@@ -82,11 +73,23 @@ export default function InstallGuide() {
   );
 }
 
-type Step = (typeof STEPS)[number];
+type StepText = Dict["install"]["steps"][number];
+type StepMeta = (typeof STEP_META)[number];
 
-function StepCard({ step, index }: { step: Step; index: number }) {
+function StepCard({
+  step,
+  meta,
+  index,
+  dict,
+}: {
+  step: StepText;
+  meta: StepMeta;
+  index: number;
+  dict: Dict;
+}) {
   const reduced = useReducedMotion();
-  const Icon = step.icon;
+  const Icon = meta.icon;
+  const placeholder = meta.placeholder(dict);
 
   return (
     <motion.div
@@ -115,16 +118,16 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
 
       <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-[#1e1e1e]">
-        {step.screenshot ? (
+        {meta.screenshot ? (
           <ScreenshotFrame
-            src={step.screenshot}
-            alt={`Step ${step.n} — ${step.title}`}
+            src={meta.screenshot}
+            alt={step.screenshotAlt}
             aspect="1/1"
             fit="contain"
-            fallback={step.placeholder}
+            fallback={placeholder}
           />
         ) : (
-          <div className="aspect-square">{step.placeholder}</div>
+          <div className="aspect-square">{placeholder}</div>
         )}
       </div>
     </motion.div>
@@ -141,62 +144,71 @@ function WinBase({ children }: { children: React.ReactNode }) {
   );
 }
 
-function WinPlaceholderA() {
+function WinPlaceholderA({ dict }: { dict: Dict }) {
+  const w = dict.winPlaceholder;
   return (
     <WinBase>
       <div className="flex items-center gap-2 text-[#ffd966]">
         <div className="h-5 w-5 rounded-sm bg-[#ffd966]/20 ring-1 ring-[#ffd966]/40" />
-        <span className="font-semibold">Windows protected your PC</span>
+        <span className="font-semibold">{w.title}</span>
       </div>
       <p className="mt-2 text-[10px] leading-snug text-white/70">
-        Microsoft Defender SmartScreen prevented an unrecognized app from
-        starting.
+        {w.description}
       </p>
       <div className="mt-3 space-y-1 text-[10px] text-white/50">
-        <div>App: LoL-Skin-Picker-Setup.exe</div>
-        <div>Publisher: Unknown publisher</div>
+        <div>
+          {w.app}: LoL-Skin-Picker-Setup.exe
+        </div>
+        <div>
+          {w.publisher}: {w.publisherUnknown}
+        </div>
       </div>
       <div className="mt-3 inline-block rounded-sm border border-accent/60 bg-accent/10 px-2 py-1 text-[10px] font-semibold text-accent-strong">
-        More info
+        {w.moreInfo}
       </div>
     </WinBase>
   );
 }
 
-function WinPlaceholderB() {
+function WinPlaceholderB({ dict }: { dict: Dict }) {
+  const w = dict.winPlaceholder;
   return (
     <WinBase>
       <div className="flex items-center gap-2 text-[#ffd966]">
         <div className="h-5 w-5 rounded-sm bg-[#ffd966]/20 ring-1 ring-[#ffd966]/40" />
-        <span className="font-semibold">Windows protected your PC</span>
+        <span className="font-semibold">{w.title}</span>
       </div>
       <p className="mt-2 text-[10px] leading-snug text-white/70">
-        Microsoft Defender SmartScreen prevented an unrecognized app from
-        starting.
+        {w.description}
       </p>
       <div className="mt-3 space-y-1 text-[10px] text-white/60">
-        <div>App: LoL-Skin-Picker-Setup.exe</div>
-        <div>Publisher: Unknown publisher</div>
+        <div>
+          {w.app}: LoL-Skin-Picker-Setup.exe
+        </div>
+        <div>
+          {w.publisher}: {w.publisherUnknown}
+        </div>
       </div>
       <div className="mt-3 flex gap-2">
         <div className="rounded-sm border border-accent/60 bg-accent/15 px-2 py-1 text-[10px] font-semibold text-accent-strong">
-          Run anyway
+          {w.runAnyway}
         </div>
         <div className="rounded-sm border border-white/20 bg-white/5 px-2 py-1 text-[10px] text-white/70">
-          Don&apos;t run
+          {w.dontRun}
         </div>
       </div>
     </WinBase>
   );
 }
 
-function WinPlaceholderC() {
+function WinPlaceholderC({ dict }: { dict: Dict }) {
+  const w = dict.winPlaceholder;
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-accent/15 to-transparent p-4">
       <ShieldCheck className="h-10 w-10 text-accent-strong" />
-      <p className="mt-3 text-center text-sm font-semibold">Installed!</p>
+      <p className="mt-3 text-center text-sm font-semibold">{w.installed}</p>
       <p className="mt-1 text-center text-[11px] text-muted">
-        Auto-updates handled by the app.
+        {w.installedNote}
       </p>
     </div>
   );

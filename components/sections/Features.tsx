@@ -10,28 +10,31 @@ import {
   Wand2,
   Zap,
 } from "lucide-react";
+import type { Dict } from "@/lib/i18n/dict";
 import Reveal from "@/components/ui/Reveal";
 import ScreenshotFrame from "@/components/ui/ScreenshotFrame";
 
-export default function Features() {
+export default function Features({ dict }: { dict: Dict }) {
+  const t = dict.features;
+
   return (
     <section id="features" className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-muted">
             <Wand2 className="h-3.5 w-3.5" />
-            What it does
+            {t.eyebrow}
           </div>
           <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-            Two modes. One goal:
+            {t.titleLine1}
             <br />
-            <span className="text-muted">skins you actually want to see.</span>
+            <span className="text-muted">{t.titleLine2}</span>
           </h2>
         </Reveal>
 
         <div className="mt-12 space-y-10">
-          <SoloBlock />
-          <RoomsBlock />
+          <SoloBlock dict={dict} />
+          <RoomsBlock dict={dict} />
         </div>
       </div>
     </section>
@@ -40,8 +43,9 @@ export default function Features() {
 
 /* ---------------- Solo ---------------- */
 
-function SoloBlock() {
+function SoloBlock({ dict }: { dict: Dict }) {
   const reduced = useReducedMotion();
+  const t = dict.features.solo;
 
   return (
     <motion.div
@@ -56,7 +60,7 @@ function SoloBlock() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <ScreenshotFrame
           src="/screenshots/solo.png"
-          alt="Skin Picker solo experience with live skin preview and reroll controls"
+          alt={t.screenshotAlt}
           aspect="1266/735"
           fallback={<SoloPlaceholder />}
         />
@@ -65,30 +69,25 @@ function SoloBlock() {
       {/* Text */}
       <div className="flex flex-col justify-center lg:col-span-2">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-strong">
-          Solo
+          {t.eyebrow}
         </span>
         <h3 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-          The skin lottery, finally won.
+          {t.title}
         </h3>
-        <p className="mt-4 text-base leading-relaxed text-muted">
-          Lock your champion and Skin Picker rolls a skin and chroma you own —
-          instantly. Reroll anytime, favor the skins you love, bury the ones you
-          don&apos;t. History-aware: it won&apos;t throw you the same skin three
-          games in a row.
-        </p>
+        <p className="mt-4 text-base leading-relaxed text-muted">{t.body}</p>
 
         <ul className="mt-6 space-y-3 text-sm">
-          <Bullet icon={Zap} title="Auto-roll on lock">
-            Skin and chroma rolled the moment you lock in.
+          <Bullet icon={Zap} title={t.bullets.autoRoll.title}>
+            {t.bullets.autoRoll.body}
           </Bullet>
-          <Bullet icon={Dices} title="One-click reroll">
-            Reroll skin or chroma independently — as many times as you want.
+          <Bullet icon={Dices} title={t.bullets.reroll.title}>
+            {t.bullets.reroll.body}
           </Bullet>
-          <Bullet icon={Star} title="Weighted priorities">
-            Favorites roll ×3, deprioritized skins ×0.3. Persisted per champion.
+          <Bullet icon={Star} title={t.bullets.weighted.title}>
+            {t.bullets.weighted.body}
           </Bullet>
-          <Bullet icon={History} title="History-aware">
-            Avoids your last N picks so every game feels fresh.
+          <Bullet icon={History} title={t.bullets.history.title}>
+            {t.bullets.history.body}
           </Bullet>
         </ul>
       </div>
@@ -98,8 +97,9 @@ function SoloBlock() {
 
 /* ---------------- Rooms ---------------- */
 
-function RoomsBlock() {
+function RoomsBlock({ dict }: { dict: Dict }) {
   const reduced = useReducedMotion();
+  const t = dict.features.rooms;
 
   return (
     <motion.div
@@ -112,34 +112,27 @@ function RoomsBlock() {
       {/* Text */}
       <div className="flex flex-col justify-center lg:order-1 lg:col-span-2">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-strong">
-          Rooms · Multiplayer
+          {t.eyebrow}
         </span>
         <h3 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-          Coordinated skins,
+          {t.titleLine1}
           <br />
-          no Discord needed.
+          {t.titleLine2}
         </h3>
-        <p className="mt-4 text-base leading-relaxed text-muted">
-          Create a room, share a 6-char code with your team, and watch everyone
-          sync in real-time. Pick a color — everybody matches. Pick a Skin Line
-          — everybody goes PROJECT, Star Guardian or Arcana together. The
-          server auto-applies combos when the lobby is ready.
-        </p>
+        <p className="mt-4 text-base leading-relaxed text-muted">{t.body}</p>
 
         <ul className="mt-6 space-y-3 text-sm">
-          <Bullet icon={Users} title="Up to 5 players, live">
-            Live dashboard with everyone&apos;s current pick.
+          <Bullet icon={Users} title={t.bullets.live.title}>
+            {t.bullets.live.body}
           </Bullet>
-          <Bullet icon={Palette} title="Color sync">
-            Owner picks a theme (Blue, Red, Golden…) — teammates&apos; chromas
-            align.
+          <Bullet icon={Palette} title={t.bullets.color.title}>
+            {t.bullets.color.body}
           </Bullet>
-          <Bullet icon={Wand2} title="Skin Line sync">
-            Detects coverage of thematic lines (PROJECT, Star Guardian…) and
-            picks coordinated combos.
+          <Bullet icon={Wand2} title={t.bullets.skinLine.title}>
+            {t.bullets.skinLine.body}
           </Bullet>
-          <Bullet icon={Zap} title="Auto-apply">
-            Once every member has locked, the best combo applies itself.
+          <Bullet icon={Zap} title={t.bullets.autoApply.title}>
+            {t.bullets.autoApply.body}
           </Bullet>
         </ul>
       </div>
@@ -149,7 +142,7 @@ function RoomsBlock() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <ScreenshotFrame
           src="/screenshots/rooms.png"
-          alt="Skin Picker Rooms multiplayer view with team members and Skin Line synergies"
+          alt={t.screenshotAlt}
           aspect="1266/735"
           fallback={<RoomsPlaceholder />}
         />

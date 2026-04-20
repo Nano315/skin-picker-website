@@ -4,15 +4,18 @@ import { Download, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn, formatBytes } from "@/lib/utils";
 import type { ReleaseInfo } from "@/lib/github";
+import type { Dict } from "@/lib/i18n/dict";
 
 type DownloadButtonProps = {
   release: ReleaseInfo;
+  dict: Dict;
   size?: "md" | "lg";
   className?: string;
 };
 
 export default function DownloadButton({
   release,
+  dict,
   size = "lg",
   className,
 }: DownloadButtonProps) {
@@ -38,7 +41,7 @@ export default function DownloadButton({
         <>
           <Download className={size === "lg" ? "h-5 w-5" : "h-4 w-4"} />
           <span className="flex flex-col leading-tight">
-            <span>Download for Windows</span>
+            <span>{dict.download.forWindows}</span>
             {size === "lg" && release.version && (
               <span className="text-[11px] font-normal text-white/80">
                 v{release.version}
@@ -52,7 +55,7 @@ export default function DownloadButton({
       ) : (
         <>
           <Github className={size === "lg" ? "h-5 w-5" : "h-4 w-4"} />
-          <span>View releases on GitHub</span>
+          <span>{dict.download.viewReleases}</span>
         </>
       )}
     </motion.a>

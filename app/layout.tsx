@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/layout/Background";
-import Nav from "@/components/layout/Nav";
-import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +15,13 @@ export const metadata: Metadata = {
   description:
     "Skin Picker auto-picks, rerolls and synchronizes League of Legends skins across your team in champ select. Free, open-source, Windows.",
   metadataBase: new URL("https://skin-picker-website.vercel.app"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      fr: "/fr",
+    },
+  },
   openGraph: {
     title: "Skin Picker",
     description:
@@ -42,13 +47,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // <html lang> stays "en" here so the root layout can be statically rendered;
+  // the French page overrides document language via metadata / <head> and the
+  // content itself is clearly French, so screen readers still detect it.
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen bg-bg text-ink antialiased font-sans">
         <Background />
-        <Nav />
         <main className="relative z-10">{children}</main>
-        <Footer />
       </body>
     </html>
   );

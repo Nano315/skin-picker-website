@@ -5,14 +5,11 @@ import Link from "next/link";
 import { Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import type { Dict } from "@/lib/i18n/dict";
+import type { Lang } from "@/lib/i18n/types";
 
-const LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#download", label: "Download" },
-  { href: "#install", label: "Install guide" },
-];
-
-export default function Nav() {
+export default function Nav({ dict, lang }: { dict: Dict; lang: Lang }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,6 +18,15 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const home = lang === "fr" ? "/fr" : "/";
+  const t = dict.nav;
+
+  const links = [
+    { href: "#features", label: t.features },
+    { href: "#install", label: t.install },
+    { href: "#download", label: t.download },
+  ];
 
   return (
     <header
@@ -39,7 +45,7 @@ export default function Nav() {
         )}
       >
         <Link
-          href="/"
+          href={home}
           className="flex items-center gap-2 text-sm font-semibold tracking-tight"
         >
           <Logo className="h-7 w-7" />
@@ -47,7 +53,7 @@ export default function Nav() {
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
-          {LINKS.map((l) => (
+          {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -58,15 +64,18 @@ export default function Nav() {
           ))}
         </nav>
 
-        <a
-          href="https://github.com/Nano315/lol-skin-picker"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-ink/90 transition-all hover:border-white/20 hover:bg-white/10"
-        >
-          <Github className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">GitHub</span>
-        </a>
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher lang={lang} />
+          <a
+            href="https://github.com/Nano315/lol-skin-picker"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-ink/90 transition-all hover:border-white/20 hover:bg-white/10"
+          >
+            <Github className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">GitHub</span>
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -3,10 +3,22 @@
 import { Github } from "lucide-react";
 import type { ReleaseInfo } from "@/lib/github";
 import { formatDate, formatBytes } from "@/lib/utils";
+import type { Dict } from "@/lib/i18n/dict";
+import type { Lang } from "@/lib/i18n/types";
 import DownloadButton from "@/components/ui/DownloadButton";
 import Reveal from "@/components/ui/Reveal";
 
-export default function DownloadCta({ release }: { release: ReleaseInfo }) {
+export default function DownloadCta({
+  release,
+  dict,
+  lang,
+}: {
+  release: ReleaseInfo;
+  dict: Dict;
+  lang: Lang;
+}) {
+  const t = dict.cta;
+
   return (
     <section id="download" className="relative py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-6">
@@ -23,15 +35,14 @@ export default function DownloadCta({ release }: { release: ReleaseInfo }) {
 
             <div className="relative">
               <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Ready to roll?
+                {t.title}
               </h2>
               <p className="mt-3 max-w-xl text-balance text-base leading-relaxed text-muted">
-                One installer, then the app keeps itself up to date. Windows 10
-                & 11.
+                {t.subtitle}
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <DownloadButton release={release} />
+                <DownloadButton release={release} dict={dict} />
                 <a
                   href={release.htmlUrl}
                   target="_blank"
@@ -39,28 +50,30 @@ export default function DownloadCta({ release }: { release: ReleaseInfo }) {
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-ink/90 transition-all hover:border-white/20 hover:bg-white/[0.06]"
                 >
                   <Github className="h-4 w-4" />
-                  Release notes
+                  {t.releaseNotes}
                 </a>
               </div>
 
               <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
                 <Stat
-                  label="Version"
+                  label={t.stats.version}
                   value={release.version ? `v${release.version}` : "—"}
                 />
                 <Stat
-                  label="Size"
+                  label={t.stats.size}
                   value={
                     release.sizeBytes ? formatBytes(release.sizeBytes) : "—"
                   }
                 />
                 <Stat
-                  label="Released"
+                  label={t.stats.released}
                   value={
-                    release.publishedAt ? formatDate(release.publishedAt) : "—"
+                    release.publishedAt
+                      ? formatDate(release.publishedAt, lang)
+                      : "—"
                   }
                 />
-                <Stat label="Platform" value="Windows 10/11" />
+                <Stat label={t.stats.platform} value={t.stats.platformValue} />
               </dl>
             </div>
           </div>

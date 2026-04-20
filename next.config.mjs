@@ -12,6 +12,7 @@ const nextConfig = {
   // copied to the function, so readFile at runtime fails.
   outputFileTracingIncludes: {
     "/opengraph-image": ["./app/og-logo.png"],
+    "/fr/opengraph-image": ["./app/og-logo.png"],
   },
 };
 
