@@ -14,10 +14,12 @@ export default function Hero({
   release,
   dict,
   lang,
+  utmContent,
 }: {
   release: ReleaseInfo;
   dict: Dict;
   lang: Lang;
+  utmContent?: string;
 }) {
   const reduced = useReducedMotion();
   const t = dict.hero;
@@ -76,7 +78,7 @@ export default function Hero({
           transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <DownloadButton release={release} dict={dict} />
+          <DownloadButton release={release} dict={dict} utmContent={utmContent} />
           <a
             href="https://github.com/Nano315/lol-skin-picker"
             target="_blank"

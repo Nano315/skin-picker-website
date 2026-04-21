@@ -101,6 +101,11 @@ export type Dict = {
   languageSwitcher: {
     label: string;
   };
+  faq: {
+    eyebrow: string;
+    title: string;
+    items: Array<{ q: string; a: string }>;
+  };
 };
 
 const en: Dict = {
@@ -115,7 +120,7 @@ const en: Dict = {
     titleLine1: "Your next skin,",
     titleLine2: "already picked.",
     subtitle:
-      "Skin Picker auto-rolls, rerolls, and synchronizes League of Legends skins across your team during champ select. Zero config, runs in the tray, goes quiet in-game.",
+      "Stop arguing about skins during draft. Let Skin Picker auto-pick and sync your whole team in seconds.",
     viewGithub: "View on GitHub",
     free: "Free & open-source",
     autoUpdates: "Auto-updates built-in",
@@ -260,6 +265,28 @@ const en: Dict = {
   languageSwitcher: {
     label: "Language",
   },
+  faq: {
+    eyebrow: "Safety & FAQ",
+    title: "Honest answers.",
+    items: [
+      {
+        q: "Can Skin Picker get me banned?",
+        a: "No. Skin Picker only communicates with the League Client through Riot's official LCU WebSocket/REST API — the same interface used by every approved third-party tool. It doesn't inject code, doesn't modify game files, and has zero interaction with Vanguard. Riot has publicly stated that LCU-based tools are permitted.",
+      },
+      {
+        q: "Why does Windows show a red security popup?",
+        a: "The installer isn't yet signed with a paid Microsoft code-signing certificate. Windows shows this warning for any unsigned executable, regardless of what it actually does — it's not a verdict on the app's safety. Click \"More info\" → \"Run anyway\" to proceed. If you'd rather verify yourself, the entire source code is public on GitHub.",
+      },
+      {
+        q: "Does it work while I'm in-game?",
+        a: "No. Skin Picker is only active during champion select (draft phase). Once the match starts it goes completely silent — no background processes affecting your FPS, no network calls, nothing.",
+      },
+      {
+        q: "Is any data collected?",
+        a: "No telemetry by default. The only network traffic the app generates is local calls to Riot's LCU and, when you're in a Room session, a connection to the Rooms server to sync picks with your team. No analytics, no tracking, no third-party SDKs.",
+      },
+    ],
+  },
 };
 
 const fr: Dict = {
@@ -274,7 +301,7 @@ const fr: Dict = {
     titleLine1: "Ton prochain skin,",
     titleLine2: "déjà choisi.",
     subtitle:
-      "Skin Picker tire, relance et synchronise automatiquement tes skins League of Legends avec ton équipe pendant le champ select. Zéro config, tourne dans le tray, se fait oublier en jeu.",
+      "Stop de débattre des skins pendant le draft. Skin Picker sélectionne et synchronise toute ton équipe en quelques secondes.",
     viewGithub: "Voir sur GitHub",
     free: "Gratuit & open-source",
     autoUpdates: "Mises à jour auto",
@@ -421,6 +448,28 @@ const fr: Dict = {
   },
   languageSwitcher: {
     label: "Langue",
+  },
+  faq: {
+    eyebrow: "Sécurité & FAQ",
+    title: "Des réponses honnêtes.",
+    items: [
+      {
+        q: "Est-ce que Skin Picker peut me faire ban ?",
+        a: "Non. Skin Picker communique uniquement avec le client League via l'API WebSocket/REST officielle de Riot (la LCU) — le même protocole utilisé par tous les outils tiers autorisés. Pas d'injection de code, pas de modification de fichiers, aucune interaction avec Vanguard. Riot a publiquement confirmé que les outils basés sur la LCU sont tolérés.",
+      },
+      {
+        q: "Pourquoi Windows affiche un popup rouge ?",
+        a: "L'installateur n'est pas encore signé avec un certificat de code Microsoft payant. Windows affiche cet avertissement pour tout exécutable non signé — ce n'est pas un jugement sur la sécurité de l'app. Clique sur « Informations complémentaires » → « Exécuter quand même » pour continuer. Si tu préfères vérifier toi-même, le code source complet est public sur GitHub.",
+      },
+      {
+        q: "Est-ce que ça fonctionne en jeu ?",
+        a: "Non. Skin Picker est actif uniquement pendant le champion select (phase de draft). Une fois la partie lancée, l'app se met complètement en veille — aucun processus en fond qui impacte ton FPS, aucune requête réseau, rien.",
+      },
+      {
+        q: "Mes données sont-elles collectées ?",
+        a: "Aucune télémétrie par défaut. Le seul trafic réseau généré par l'app, c'est les appels locaux vers la LCU de Riot et, quand tu es dans une session Rooms, une connexion au serveur Rooms pour synchroniser les picks avec ton équipe. Zéro analytics, zéro tracking, zéro SDK tiers.",
+      },
+    ],
   },
 };
 

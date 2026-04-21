@@ -9,18 +9,35 @@ import type { Dict } from "@/lib/i18n/dict";
 type DownloadButtonProps = {
   release: ReleaseInfo;
   dict: Dict;
+  /** Identifies which button triggered the download (e.g. "hero", "cta"). */
+  utmContent?: string;
   size?: "md" | "lg";
   className?: string;
 };
 
+function withUtm(url: string, content?: string): string {
+  if (!url) return url;
+  const u = new URL(url, "https://placeholder.invalid");
+  u.searchParams.set("utm_source", "skinpicker-website");
+  u.searchParams.set("utm_medium", "web");
+  u.searchParams.set("utm_campaign", "download");
+  if (content) u.searchParams.set("utm_content", content);
+  // Return only path + search for relative URLs, full URL otherwise
+  return url.startsWith("http")
+    ? `${u.origin}${u.pathname}${u.search}`
+    : `${u.pathname}${u.search}`;
+}
+
 export default function DownloadButton({
   release,
   dict,
+  utmContent,
   size = "lg",
   className,
 }: DownloadButtonProps) {
   const hasDownload = !!release.downloadUrl;
-  const href = release.downloadUrl ?? release.htmlUrl;
+  const rawHref = release.downloadUrl ?? release.htmlUrl;
+  const href = withUtm(rawHref, utmContent);
 
   return (
     <motion.a

@@ -12,10 +12,12 @@ export default function DownloadCta({
   release,
   dict,
   lang,
+  utmContent,
 }: {
   release: ReleaseInfo;
   dict: Dict;
   lang: Lang;
+  utmContent?: string;
 }) {
   const t = dict.cta;
 
@@ -42,7 +44,7 @@ export default function DownloadCta({
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <DownloadButton release={release} dict={dict} />
+                <DownloadButton release={release} dict={dict} utmContent={utmContent} />
                 <a
                   href={release.htmlUrl}
                   target="_blank"

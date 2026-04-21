@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
 import InstallGuide from "@/components/sections/InstallGuide";
+import FAQ from "@/components/sections/FAQ";
 import DownloadCta from "@/components/sections/DownloadCta";
 
 export const revalidate = 600;
@@ -40,10 +41,11 @@ export default async function FrenchPage() {
   return (
     <>
       <Nav dict={dict} lang="fr" />
-      <Hero release={release} dict={dict} lang="fr" />
+      <Hero release={release} dict={dict} lang="fr" utmContent="hero" />
       <Features dict={dict} />
       <InstallGuide dict={dict} />
-      <DownloadCta release={release} dict={dict} lang="fr" />
+      <FAQ dict={dict} />
+      <DownloadCta release={release} dict={dict} lang="fr" utmContent="cta" />
       <Footer dict={dict} lang="fr" />
     </>
   );
