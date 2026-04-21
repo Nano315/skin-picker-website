@@ -55,6 +55,8 @@ export default function ScreenshotFrame({
           onLoad={() => setLoaded(true)}
           className={cn(
             "absolute inset-0 h-full w-full transition-opacity duration-500",
+            // Slight zoom to hide the thin border/gap left by windowed screenshots.
+            "scale-[1.01]",
             fit === "cover" ? "object-cover" : "object-contain",
             loaded ? "opacity-100" : "opacity-0"
           )}
