@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Dices,
@@ -11,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import type { Dict } from "@/lib/i18n/dict";
+import { cn } from "@/lib/utils";
 import Reveal from "@/components/ui/Reveal";
 import ScreenshotFrame from "@/components/ui/ScreenshotFrame";
 
@@ -137,17 +139,115 @@ function RoomsBlock({ dict }: { dict: Dict }) {
         </ul>
       </div>
 
-      {/* Screenshot card */}
+      {/* Screenshot carousel */}
       <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0d12] shadow-glass lg:order-2 lg:col-span-3">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <ScreenshotFrame
-          src="/screenshots/rooms.png"
-          alt={t.screenshotAlt}
-          aspect="1266/735"
-          fallback={<RoomsPlaceholder />}
-        />
+        <RoomsCarousel alt={t.screenshotAlt} fallback={<RoomsPlaceholder />} />
       </div>
     </motion.div>
+  );
+}
+
+/* ---------------- Rooms Carousel ---------------- */
+
+const ROOMS_SLIDES = [
+  "/screenshots/rooms.png",
+  "/screenshots/rooms-sync.png",
+] as const;
+
+const SLIDE_INTERVAL = 4000;
+
+function RoomsCarousel({
+  alt,
+  fallback,
+}: {
+  alt: string;
+  fallback: React.ReactNode;
+}) {
+  const reduced = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const [loaded, setLoaded] = useState<boolean[]>([false, false]);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Preload all slides and track loaded state
+  useEffect(() => {
+    ROOMS_SLIDES.forEach((src, i) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoaded((prev) => {
+          const next = [...prev];
+          next[i] = true;
+          return next;
+        });
+    });
+  }, []);
+
+  // Auto-advance (skip if user prefers reduced motion)
+  useEffect(() => {
+    if (reduced) return;
+    timerRef.current = setInterval(() => {
+      setActive((v) => (v + 1) % ROOMS_SLIDES.length);
+    }, SLIDE_INTERVAL);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [reduced]);
+
+  // Reset timer on manual navigation
+  const goTo = (idx: number) => {
+    setActive(idx);
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (!reduced) {
+      timerRef.current = setInterval(() => {
+        setActive((v) => (v + 1) % ROOMS_SLIDES.length);
+      }, SLIDE_INTERVAL);
+    }
+  };
+
+  const anyLoaded = loaded.some(Boolean);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ aspectRatio: "1266/735" }}
+    >
+      {/* Fallback until first image is ready */}
+      {!anyLoaded && (
+        <div className="absolute inset-0">{fallback}</div>
+      )}
+
+      {/* Slides — both always rendered for instant crossfade */}
+      {ROOMS_SLIDES.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={alt}
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover scale-[1.01]",
+            "transition-opacity duration-700",
+            loaded[i] && i === active ? "opacity-100" : "opacity-0"
+          )}
+        />
+      ))}
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5">
+        {ROOMS_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Slide ${i + 1}`}
+            className={cn(
+              "h-1.5 rounded-full transition-all duration-300",
+              i === active
+                ? "w-5 bg-white/70"
+                : "w-1.5 bg-white/25 hover:bg-white/40"
+            )}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
