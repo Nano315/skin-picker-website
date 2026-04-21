@@ -1,14 +1,14 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github, Shield, Sparkles } from "lucide-react";
 import type { ReleaseInfo } from "@/lib/github";
-import { formatDate } from "@/lib/utils";
+import { formatDate, cn } from "@/lib/utils";
 import type { Dict } from "@/lib/i18n/dict";
 import type { Lang } from "@/lib/i18n/types";
 import DownloadButton from "@/components/ui/DownloadButton";
 import GradientText from "@/components/ui/GradientText";
-import ScreenshotFrame from "@/components/ui/ScreenshotFrame";
 
 export default function Hero({
   release,
@@ -122,17 +122,111 @@ export default function Hero({
             className="absolute inset-x-8 -bottom-8 h-28 rounded-full bg-accent/30 blur-3xl"
           />
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d12] shadow-[0_30px_120px_-20px_rgba(139,92,246,0.5)] backdrop-blur-md">
-            <ScreenshotFrame
-              src="/screenshots/hero.png"
-              alt={t.screenshotAlt}
-              aspect="1266/735"
-              priority
-              fallback={<HeroPlaceholder />}
-            />
+            <HeroCarousel />
           </div>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+/* Each slide: src + how long it stays on screen (ms) */
+const HERO_SLIDES = [
+  { src: "/screenshots/hero.png",      duration: 6000 },
+  { src: "/screenshots/solo.png",      duration: 4000 },
+  { src: "/screenshots/rooms.png",     duration: 4000 },
+  { src: "/screenshots/rooms-sync.png",duration: 4000 },
+] as const;
+
+function HeroCarousel() {
+  const reduced = useReducedMotion();
+  const [active, setActive] = useState(0);
+  const [loaded, setLoaded] = useState<boolean[]>(HERO_SLIDES.map(() => false));
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Preload all images up-front
+  useEffect(() => {
+    HERO_SLIDES.forEach(({ src }, i) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () =>
+        setLoaded((prev) => {
+          const next = [...prev];
+          next[i] = true;
+          return next;
+        });
+    });
+  }, []);
+
+  // Schedule the next slide after the current slide's duration
+  const scheduleNext = (currentIdx: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      const next = (currentIdx + 1) % HERO_SLIDES.length;
+      setActive(next);
+      scheduleNext(next);
+    }, HERO_SLIDES[currentIdx].duration);
+  };
+
+  useEffect(() => {
+    if (reduced) return;
+    scheduleNext(0);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduced]);
+
+  const goTo = (idx: number) => {
+    setActive(idx);
+    if (!reduced) scheduleNext(idx);
+  };
+
+  const anyLoaded = loaded.some(Boolean);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ aspectRatio: "1266/735" }}
+    >
+      {/* Placeholder until first image is ready */}
+      {!anyLoaded && (
+        <div className="absolute inset-0">
+          <HeroPlaceholder />
+        </div>
+      )}
+
+      {HERO_SLIDES.map(({ src }, i) => (
+        <img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden={i !== active}
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover scale-[1.01]",
+            "transition-opacity duration-700",
+            loaded[i] && i === active ? "opacity-100" : "opacity-0"
+          )}
+        />
+      ))}
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Slide ${i + 1}`}
+            className={cn(
+              "h-1.5 rounded-full transition-all duration-300",
+              i === active
+                ? "w-5 bg-white/70"
+                : "w-1.5 bg-white/25 hover:bg-white/40"
+            )}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
