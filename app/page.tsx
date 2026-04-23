@@ -8,6 +8,7 @@ import Features from "@/components/sections/Features";
 import InstallGuide from "@/components/sections/InstallGuide";
 import FAQ from "@/components/sections/FAQ";
 import DownloadCta from "@/components/sections/DownloadCta";
+import LandingViewTracker from "@/components/analytics/LandingViewTracker";
 
 // Refresh GitHub release data at most every 10 minutes.
 export const revalidate = 600;
@@ -25,6 +26,7 @@ export default async function Page() {
 
   return (
     <>
+      <LandingViewTracker locale="en" />
       <Nav dict={dict} lang="en" />
       <Hero release={release} dict={dict} lang="en" utmContent="hero" />
       <Features dict={dict} />

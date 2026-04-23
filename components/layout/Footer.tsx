@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
+import FooterGithubLink from "@/components/layout/FooterLink";
 import type { Dict } from "@/lib/i18n/dict";
 import type { Lang } from "@/lib/i18n/types";
 
@@ -50,34 +51,31 @@ export default function Footer({ dict, lang }: { dict: Dict; lang: Lang }) {
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <FooterGithubLink
                   href="https://github.com/Nano315/lol-skin-picker"
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  source="footer"
                   className="text-ink/80 hover:text-ink"
                 >
                   {t.projectLinks.github}
-                </a>
+                </FooterGithubLink>
               </li>
               <li>
-                <a
+                <FooterGithubLink
                   href="https://github.com/Nano315/lol-skin-picker/releases"
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  source="footer"
                   className="text-ink/80 hover:text-ink"
                 >
                   {t.projectLinks.releases}
-                </a>
+                </FooterGithubLink>
               </li>
               <li>
-                <a
+                <FooterGithubLink
                   href="https://github.com/Nano315/lol-skin-picker/issues"
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  source="footer"
                   className="text-ink/80 hover:text-ink"
                 >
                   {t.projectLinks.issues}
-                </a>
+                </FooterGithubLink>
               </li>
             </ul>
           </div>

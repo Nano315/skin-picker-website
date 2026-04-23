@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/layout/Background";
+import AptabaseProvider from "@/components/analytics/AptabaseProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen bg-bg text-ink antialiased font-sans">
+        <AptabaseProvider />
         <Background />
         <main className="relative z-10">{children}</main>
       </body>

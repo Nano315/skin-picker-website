@@ -9,6 +9,7 @@ import type { Dict } from "@/lib/i18n/dict";
 import type { Lang } from "@/lib/i18n/types";
 import DownloadButton from "@/components/ui/DownloadButton";
 import GradientText from "@/components/ui/GradientText";
+import { trackGithubClicked } from "@/lib/analytics";
 
 export default function Hero({
   release,
@@ -38,6 +39,7 @@ export default function Hero({
             href={release.htmlUrl}
             target="_blank"
             rel="noreferrer noopener"
+            onClick={() => trackGithubClicked("version_pill")}
             className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-ink/90 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/[0.06]"
           >
             <span className="relative flex h-2 w-2">
@@ -83,6 +85,7 @@ export default function Hero({
             href="https://github.com/Nano315/lol-skin-picker"
             target="_blank"
             rel="noreferrer noopener"
+            onClick={() => trackGithubClicked("hero")}
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-4 text-sm font-medium text-ink/90 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/[0.06]"
           >
             <Github className="h-4 w-4" />

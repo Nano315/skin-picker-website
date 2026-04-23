@@ -8,6 +8,7 @@ import Logo from "@/components/ui/Logo";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import type { Dict } from "@/lib/i18n/dict";
 import type { Lang } from "@/lib/i18n/types";
+import { trackGithubClicked } from "@/lib/analytics";
 
 export default function Nav({ dict, lang }: { dict: Dict; lang: Lang }) {
   const [scrolled, setScrolled] = useState(false);
@@ -70,6 +71,7 @@ export default function Nav({ dict, lang }: { dict: Dict; lang: Lang }) {
             href="https://github.com/Nano315/lol-skin-picker"
             target="_blank"
             rel="noreferrer noopener"
+            onClick={() => trackGithubClicked("nav")}
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-ink/90 transition-all hover:border-white/20 hover:bg-white/10"
           >
             <Github className="h-3.5 w-3.5" />

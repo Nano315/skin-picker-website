@@ -7,6 +7,7 @@ import type { Dict } from "@/lib/i18n/dict";
 import type { Lang } from "@/lib/i18n/types";
 import DownloadButton from "@/components/ui/DownloadButton";
 import Reveal from "@/components/ui/Reveal";
+import { trackGithubClicked } from "@/lib/analytics";
 
 export default function DownloadCta({
   release,
@@ -49,6 +50,7 @@ export default function DownloadCta({
                   href={release.htmlUrl}
                   target="_blank"
                   rel="noreferrer noopener"
+                  onClick={() => trackGithubClicked("release_notes")}
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-ink/90 transition-all hover:border-white/20 hover:bg-white/[0.06]"
                 >
                   <Github className="h-4 w-4" />

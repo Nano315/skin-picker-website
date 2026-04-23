@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn, formatBytes } from "@/lib/utils";
 import type { ReleaseInfo } from "@/lib/github";
 import type { Dict } from "@/lib/i18n/dict";
+import { trackDownloadClicked } from "@/lib/analytics";
 
 type DownloadButtonProps = {
   release: ReleaseInfo;
@@ -39,9 +40,20 @@ export default function DownloadButton({
   const rawHref = release.downloadUrl ?? release.htmlUrl;
   const href = withUtm(rawHref, utmContent);
 
+  // utmContent is "hero" | "cta" at call sites. Narrow for analytics typing;
+  // default to "cta" so a typo doesn't drop the event.
+  const source: "hero" | "cta" = utmContent === "hero" ? "hero" : "cta";
+
   return (
     <motion.a
       href={href}
+      onClick={() =>
+        trackDownloadClicked({
+          source,
+          version: release.version,
+          hasDirectDownload: hasDownload,
+        })
+      }
       whileHover={{ y: -2 }}
       whileTap={{ y: 0, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 24 }}

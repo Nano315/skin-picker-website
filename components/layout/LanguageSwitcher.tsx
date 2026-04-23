@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Languages } from "lucide-react";
 import type { Lang } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
+import { trackLanguageSwitched } from "@/lib/analytics";
 
 export default function LanguageSwitcher({ lang }: { lang: Lang }) {
   const pathname = usePathname() || "/";
@@ -23,6 +24,7 @@ export default function LanguageSwitcher({ lang }: { lang: Lang }) {
         href={enHref}
         prefetch={false}
         aria-current={lang === "en" ? "page" : undefined}
+        onClick={() => lang !== "en" && trackLanguageSwitched("en")}
         className={cn(
           "rounded-full px-2 py-1 transition-colors",
           lang === "en"
@@ -36,6 +38,7 @@ export default function LanguageSwitcher({ lang }: { lang: Lang }) {
         href={frHref}
         prefetch={false}
         aria-current={lang === "fr" ? "page" : undefined}
+        onClick={() => lang !== "fr" && trackLanguageSwitched("fr")}
         className={cn(
           "rounded-full px-2 py-1 transition-colors",
           lang === "fr"
