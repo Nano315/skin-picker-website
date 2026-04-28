@@ -165,7 +165,7 @@ const en: Dict = {
       eyebrow: "Rooms · Multiplayer",
       titleLine1: "Coordinated skins,",
       titleLine2: "no Discord needed.",
-      body: "Create a room, share a 6-char code with your team, and watch everyone sync in real-time. Pick a color — everybody matches. Pick a Skin Line — everybody goes PROJECT, Star Guardian or Arcana together. The server auto-applies combos when the lobby is ready.",
+      body: "Create a room and invite your in-game friends in one click — no need to add them on the app, invites land straight in their app and they just accept to join. Then everyone syncs in real-time: pick a color — everybody matches. Pick a Skin Line — everybody goes PROJECT, Star Guardian or Arcana together. The server auto-applies combos when the lobby is ready.",
       bullets: {
         live: {
           title: "Up to 5 players, live",
@@ -346,7 +346,7 @@ const fr: Dict = {
       eyebrow: "Rooms · Multijoueur",
       titleLine1: "Des skins coordonnés,",
       titleLine2: "sans passer par Discord.",
-      body: "Crée une room, partage un code à 6 caractères avec ton équipe, et regarde tout le monde se synchroniser en temps réel. Choisis une couleur — tout le monde s'aligne. Choisis une Skin Line — tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Le serveur applique la combo auto quand le lobby est prêt.",
+      body: "Crée une room et invite tes amis en jeu en un clic — pas besoin de les ajouter sur l'app, l'invitation arrive directement dans la leur et ils n'ont qu'à accepter pour rejoindre. Tout le monde se synchronise ensuite en temps réel : choisis une couleur — tout le monde s'aligne. Choisis une Skin Line — tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Le serveur applique la combo auto quand le lobby est prêt.",
       bullets: {
         live: {
           title: "Jusqu'à 5 joueurs, en direct",
