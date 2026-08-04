@@ -104,7 +104,11 @@ export type Dict = {
   faq: {
     eyebrow: string;
     title: string;
-    items: Array<{ q: string; a: string; link?: { href: string; label: string } }>;
+    items: Array<{
+      q: string;
+      a: string;
+      link?: { href: string; label: string };
+    }>;
   };
 };
 
@@ -117,16 +121,15 @@ const en: Dict = {
   hero: {
     latestRelease: "Latest release",
     checkGithub: "Check GitHub",
-    titleLine1: "Your next skin,",
-    titleLine2: "already picked.",
+    titleLine1: "Stop scrolling",
+    titleLine2: "the skin list.",
     subtitle:
-      "Stop arguing about skins during draft. Let Skin Picker auto-pick and sync your whole team in seconds.",
+      "Skin Picker rolls a skin you own the second you lock in, and syncs the rest of your team if they're running it too.",
     viewGithub: "View on GitHub",
     free: "Free & open-source",
-    autoUpdates: "Auto-updates built-in",
+    autoUpdates: "Updates itself",
     updated: "Updated",
-    screenshotAlt:
-      "Skin Picker app home screen with bento grid and champion skin preview",
+    screenshotAlt: "Skin Picker home screen with the champion skin preview",
   },
   download: {
     forWindows: "Download for Windows",
@@ -134,93 +137,94 @@ const en: Dict = {
   },
   features: {
     eyebrow: "What it does",
-    titleLine1: "Two modes. One goal:",
-    titleLine2: "skins you actually want to see.",
+    titleLine1: "Two ways to use it:",
+    titleLine2: "alone, or with the squad.",
     solo: {
       eyebrow: "Solo",
-      title: "The skin lottery, finally won.",
-      body: "Lock your champion and Skin Picker rolls a skin and chroma you own — instantly. Reroll anytime, favor the skins you love, bury the ones you don't. History-aware: it won't throw you the same skin three games in a row.",
+      title: "Lock in, get a skin.",
+      body: "Lock your champion and Skin Picker rolls a skin and chroma you own. Don't like it? Reroll. You can weight the skins you love upward and push the ones you never want down, and it remembers what you've played recently, so you won't get the same skin three games in a row.",
       bullets: {
         autoRoll: {
           title: "Auto-roll on lock",
-          body: "Skin and chroma rolled the moment you lock in.",
+          body: "The roll happens the moment you lock your champion.",
         },
         reroll: {
           title: "One-click reroll",
-          body: "Reroll skin or chroma independently — as many times as you want.",
+          body: "Reroll the skin, the chroma, or both. No limit.",
         },
         weighted: {
           title: "Weighted priorities",
-          body: "Favorites roll ×3, deprioritized skins ×0.3. Persisted per champion.",
+          body: "Favorites roll ×3, buried skins ×0.3. Saved per champion.",
         },
         history: {
-          title: "History-aware",
-          body: "Avoids your last N picks so every game feels fresh.",
+          title: "Won't repeat itself",
+          body: "Skips your last few picks so games stop looking alike.",
         },
       },
       screenshotAlt:
-        "Skin Picker solo experience with live skin preview and reroll controls",
+        "Skin Picker in solo mode, with the skin preview and the reroll buttons",
     },
     rooms: {
       eyebrow: "Rooms · Multiplayer",
-      titleLine1: "Coordinated skins,",
-      titleLine2: "no Discord needed.",
-      body: "Create a room and invite your in-game friends in one click — no need to add them on the app, invites land straight in their app and they just accept to join. Then everyone syncs in real-time: pick a color — everybody matches. Pick a Skin Line — everybody goes PROJECT, Star Guardian or Arcana together. The server auto-applies combos when the lobby is ready.",
+      titleLine1: "Team skins,",
+      titleLine2: "without the Discord call.",
+      body: "Create a room and invite the friends you're already queuing with. Nobody has to add anyone: the invite lands in their app and they accept. From there everything syncs live. Pick a color and the team's chromas follow. Pick a skin line and everyone goes PROJECT, Star Guardian or Arcana together. When the lobby is ready, the server applies the combo for you.",
       bullets: {
         live: {
           title: "Up to 5 players, live",
-          body: "Live dashboard with everyone's current pick.",
+          body: "One dashboard with everyone's current pick on it.",
         },
         color: {
           title: "Color sync",
-          body: "Owner picks a theme (Blue, Red, Golden…) — teammates' chromas align.",
+          body: "The room owner picks a theme (blue, red, gold…) and the chromas fall in line.",
         },
         skinLine: {
-          title: "Skin Line sync",
-          body: "Detects coverage of thematic lines (PROJECT, Star Guardian…) and picks coordinated combos.",
+          title: "Skin line sync",
+          body: "Works out which thematic lines you all own between you, then picks a matching set.",
         },
         autoApply: {
           title: "Auto-apply",
-          body: "Once every member has locked, the best combo applies itself.",
+          body: "Once everyone has locked, the combo applies itself.",
         },
       },
       screenshotAlt:
-        "Skin Picker Rooms multiplayer view with team members and Skin Line synergies",
+        "Skin Picker Rooms view with the team members and their skin line matches",
     },
   },
   install: {
     eyebrow: "Install in 30 seconds",
     title: "About the Windows warning",
     intro:
-      "Skin Picker is a small personal project, not signed with a paid Microsoft certificate yet. Windows shows a safety warning for any unsigned app — it doesn't mean the app is unsafe. Here's how to get through it.",
+      "Skin Picker is a personal project and I haven't paid for a Microsoft signing certificate yet. Windows warns about any unsigned app, which tells you nothing about what the app actually does. Here's how to get past it.",
     steps: [
       {
         n: "01",
         title: "Run the installer",
-        body: "Double-click the file you just downloaded. Windows SmartScreen will show a warning screen because the app isn't code-signed yet — that's normal at this stage.",
+        body: "Double-click the file you just downloaded. SmartScreen throws up a warning because the app isn't signed. That's expected.",
         screenshotAlt: "Step 01 — Windows SmartScreen warning screen",
       },
       {
         n: "02",
-        title: "Click \u201cMore info\u201d",
-        body: "SmartScreen hides the Run button by default. Click the small \u201cMore info\u201d link — the publisher details then expand and the Run anyway button appears.",
-        screenshotAlt: "Step 02 — More info link revealing Run anyway button",
+        title: 'Click "More info"',
+        body: "SmartScreen hides the Run button behind that small link. Click it, the publisher details expand and the Run anyway button shows up.",
+        screenshotAlt:
+          "Step 02 — More info link revealing the Run anyway button",
       },
       {
         n: "03",
-        title: "Click \u201cRun anyway\u201d",
-        body: "The installer launches and sets up Skin Picker like any other Windows app. From now on, updates are automatic — no more warning, no more re-download.",
+        title: 'Click "Run anyway"',
+        body: "The installer does its thing and Skin Picker sets up like any other Windows app. Updates are automatic from then on, so this is a one-time detour.",
         screenshotAlt: "Step 03 — App installed, auto-updates handled",
       },
     ],
     transparencyLabel: "Transparency:",
     transparencyBody:
-      "the entire source code is public on GitHub. You can read it, build it yourself, or audit every release. The installer is published automatically from the repo via GitHub Actions — no manual handling, no hidden binaries.",
+      "the source code is public on GitHub. Read it, build it yourself, check any release you like. The installer is published straight from the repo by GitHub Actions, so nothing gets assembled by hand on my machine.",
   },
   cta: {
     title: "Ready to roll?",
     subtitle:
-      "One installer, then the app keeps itself up to date. Windows 10 & 11.",
+      "One installer, then it keeps itself up to date. Windows 10 and 11.",
     releaseNotes: "Release notes",
     stats: {
       version: "Version",
@@ -232,7 +236,7 @@ const en: Dict = {
   },
   footer: {
     tagline:
-      "An open-source Windows app that auto-picks, rerolls and synchronizes League of Legends skins with your team during champ select.",
+      "An open-source Windows app that rolls your League of Legends skins during champ select and syncs them with your team.",
     productHeader: "Product",
     projectHeader: "Project",
     productLinks: {
@@ -260,18 +264,18 @@ const en: Dict = {
     runAnyway: "Run anyway",
     dontRun: "Don't run",
     installed: "Installed!",
-    installedNote: "Auto-updates handled by the app.",
+    installedNote: "The app updates itself from here.",
   },
   languageSwitcher: {
     label: "Language",
   },
   faq: {
     eyebrow: "Safety & FAQ",
-    title: "Honest answers.",
+    title: "The questions I actually get.",
     items: [
       {
         q: "Can Skin Picker get me banned?",
-        a: "No — and here's exactly why. Skin Picker talks to the League Client through its official local API (the LCU), sending the same requests the client itself sends when you click a skin, and it can only ever select skins and chromas you already own. It never modifies game files, never injects code, and never reads game memory — which is what Vanguard actually targets, and why \"skin changers\" that unlock unowned skins get banned. Skin Picker is a different kind of tool, in the same family as Blitz, Porofessor or OP.GG. Riot's own developer FAQ on Vanguard states that apps built on the LCU API \"are still expected to work\", and Skin Picker is declared to Riot through their Developer Portal product registration.",
+        a: "No, and here's the reasoning. Skin Picker talks to the League client through its official local API, the LCU. It sends the same requests the client sends when you click a skin yourself, and it can only ever select skins and chromas you already own. It doesn't touch game files, inject code or read game memory. That last part is what Vanguard looks for, and it's why the skin changers that unlock skins you don't own get people banned. Skin Picker sits in the same category as Blitz, Porofessor or OP.GG. Riot's developer FAQ on Vanguard says apps built on the LCU API \"are still expected to work\", and Skin Picker is registered with Riot through their Developer Portal.",
         link: {
           href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
           label: "Read Riot's Vanguard FAQ for developers",
@@ -279,15 +283,15 @@ const en: Dict = {
       },
       {
         q: "Why does Windows show a red security popup?",
-        a: "The installer isn't yet signed with a paid Microsoft code-signing certificate. Windows shows this warning for any unsigned executable, regardless of what it actually does — it's not a verdict on the app's safety. Click \"More info\" → \"Run anyway\" to proceed. If you'd rather verify yourself, the entire source code is public on GitHub.",
+        a: 'The installer isn\'t signed with a paid Microsoft code-signing certificate. Windows shows that popup for every unsigned executable no matter what it does, so it isn\'t a verdict on the app. Click "More info", then "Run anyway". And if you\'d rather check for yourself, the whole source code is on GitHub.',
       },
       {
         q: "Does it work while I'm in-game?",
-        a: "No. Skin Picker does its job during champion select (draft phase). Once the match starts, the window hides to the tray and the app stays idle — it has zero interaction with the game process itself: no overlay, no hooks, nothing that could touch your FPS. It simply keeps watching the client's local API so it knows when you're back in a lobby.",
+        a: "No. Its job is finished by the end of champion select. Once the match loads, the window goes to the tray and the app sits there: no overlay, no hooks, nothing anywhere near your FPS. It just keeps an eye on the client's local API so it knows when you're back in a lobby.",
       },
       {
         q: "Is any data collected?",
-        a: "Not unless you say so. On first launch you choose whether to share anonymous usage statistics (via Aptabase, a privacy-focused analytics service — no account data, no personal information), and you can change your mind anytime in Settings. Beyond that, the app's network traffic is limited to local calls to Riot's client API and, when you join a Room, a connection to the Rooms server to sync picks with your team.",
+        a: "Not unless you say yes. On first launch you choose whether to send anonymous usage stats through Aptabase, a privacy-focused analytics service that never sees your account or anything personal, and you can flip that setting whenever you want. Beyond that, the app only talks to Riot's local client API, plus the Rooms server while you're actually in a room.",
       },
     ],
   },
@@ -302,16 +306,16 @@ const fr: Dict = {
   hero: {
     latestRelease: "Dernière version",
     checkGithub: "Voir sur GitHub",
-    titleLine1: "Ton prochain skin,",
-    titleLine2: "déjà choisi.",
+    titleLine1: "Arrête de scroller",
+    titleLine2: "la liste des skins.",
     subtitle:
-      "Stop de débattre des skins pendant le draft. Skin Picker sélectionne et synchronise toute ton équipe en quelques secondes.",
+      "Skin Picker tire un skin que tu possèdes dès que tu lock, et synchronise le reste de l'équipe si elle l'a aussi.",
     viewGithub: "Voir sur GitHub",
     free: "Gratuit & open-source",
-    autoUpdates: "Mises à jour auto",
+    autoUpdates: "Se met à jour tout seul",
     updated: "Mis à jour le",
     screenshotAlt:
-      "Écran d'accueil de Skin Picker avec grille bento et aperçu du skin du champion",
+      "Écran d'accueil de Skin Picker avec l'aperçu du skin du champion",
   },
   download: {
     forWindows: "Télécharger pour Windows",
@@ -319,96 +323,95 @@ const fr: Dict = {
   },
   features: {
     eyebrow: "Ce qu'il fait",
-    titleLine1: "Deux modes. Un seul but :",
-    titleLine2: "des skins que t'as vraiment envie de voir.",
+    titleLine1: "Deux façons de l'utiliser :",
+    titleLine2: "seul, ou avec la team.",
     solo: {
       eyebrow: "Solo",
-      title: "La loterie des skins, enfin gagnée.",
-      body: "Lock ton champion et Skin Picker tire un skin et un chroma que tu possèdes — instantanément. Relance autant que tu veux, mets en avant les skins que tu adores, enterre ceux que tu détestes. Tient compte de l'historique : il ne te refilera pas le même skin trois games d'affilée.",
+      title: "Tu lock, tu as ton skin.",
+      body: "Tu lock ton champion, Skin Picker tire un skin et un chroma que tu possèdes. Ça te plaît pas ? Relance. Tu peux monter le poids des skins que tu adores, descendre celui de ceux que tu ne veux plus voir, et l'app retient tes derniers tirages, donc pas de même skin trois games d'affilée.",
       bullets: {
         autoRoll: {
           title: "Tirage auto au lock",
-          body: "Skin et chroma tirés dès que tu lock.",
+          body: "Le tirage part dès que tu lock ton champion.",
         },
         reroll: {
           title: "Relance en un clic",
-          body: "Relance le skin ou le chroma indépendamment — autant de fois que tu veux.",
+          body: "Relance le skin, le chroma, ou les deux. Sans limite.",
         },
         weighted: {
           title: "Priorités pondérées",
-          body: "Favoris ×3, skins déclassés ×0.3. Sauvegardé par champion.",
+          body: "Favoris ×3, skins enterrés ×0.3. Sauvegardé par champion.",
         },
         history: {
           title: "Anti-répétition",
-          body: "Évite tes N derniers picks pour que chaque game soit frais.",
+          body: "Écarte tes derniers picks pour que les games ne se ressemblent pas.",
         },
       },
       screenshotAlt:
-        "Mode solo de Skin Picker avec aperçu du skin en direct et contrôles de relance",
+        "Skin Picker en mode solo, avec l'aperçu du skin et les boutons de relance",
     },
     rooms: {
       eyebrow: "Rooms · Multijoueur",
-      titleLine1: "Des skins coordonnés,",
-      titleLine2: "sans passer par Discord.",
-      body: "Crée une room et invite tes amis en jeu en un clic — pas besoin de les ajouter sur l'app, l'invitation arrive directement dans la leur et ils n'ont qu'à accepter pour rejoindre. Tout le monde se synchronise ensuite en temps réel : choisis une couleur — tout le monde s'aligne. Choisis une Skin Line — tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Le serveur applique la combo auto quand le lobby est prêt.",
+      titleLine1: "Des skins d'équipe,",
+      titleLine2: "sans l'appel Discord.",
+      body: "Crée une room et invite les amis avec qui tu joues déjà. Personne n'a besoin d'ajouter personne : l'invitation arrive dans leur app et ils acceptent. Ensuite tout se synchronise en direct. Choisis une couleur, les chromas de l'équipe suivent. Choisis une skin line et tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Quand le lobby est prêt, le serveur applique la combo pour vous.",
       bullets: {
         live: {
           title: "Jusqu'à 5 joueurs, en direct",
-          body: "Dashboard live avec le pick actuel de chacun.",
+          body: "Un dashboard avec le pick actuel de chacun dessus.",
         },
         color: {
           title: "Synchro couleur",
-          body: "L'owner choisit un thème (Bleu, Rouge, Doré…) — les chromas des coéquipiers s'alignent.",
+          body: "L'owner de la room choisit un thème (bleu, rouge, doré…) et les chromas s'alignent.",
         },
         skinLine: {
-          title: "Synchro Skin Line",
-          body: "Détecte la couverture des lignes thématiques (PROJECT, Star Guardian…) et pick des combos coordonnés.",
+          title: "Synchro skin line",
+          body: "Regarde quelles lignes thématiques vous possédez tous, puis pick un set assorti.",
         },
         autoApply: {
           title: "Application auto",
-          body: "Dès que tout le monde a locké, la meilleure combo s'applique toute seule.",
+          body: "Dès que tout le monde a locké, la combo s'applique toute seule.",
         },
       },
       screenshotAlt:
-        "Vue multijoueur Rooms de Skin Picker avec membres de l'équipe et synergies Skin Line",
+        "Vue Rooms de Skin Picker avec les membres de l'équipe et leurs skin lines communes",
     },
   },
   install: {
     eyebrow: "Installation en 30 secondes",
     title: "À propos de l'avertissement Windows",
     intro:
-      "Skin Picker est un petit projet perso, pas encore signé avec un certificat Microsoft payant. Windows affiche un avertissement de sécurité pour toute app non signée — ça ne veut pas dire que l'app est dangereuse. Voici comment passer outre.",
+      "Skin Picker est un projet perso, et je n'ai pas encore payé de certificat de signature Microsoft. Windows prévient pour toute app non signée, ce qui ne dit rien sur ce que l'app fait vraiment. Voici comment passer outre.",
     steps: [
       {
         n: "01",
         title: "Lance l'installateur",
-        body: "Double-clique sur le fichier que tu viens de télécharger. Windows SmartScreen va afficher un écran d'avertissement parce que l'app n'est pas encore signée — c'est normal à ce stade.",
-        screenshotAlt:
-          "Étape 01 — Écran d'avertissement Windows SmartScreen",
+        body: "Double-clique sur le fichier que tu viens de télécharger. SmartScreen va afficher un avertissement parce que l'app n'est pas signée. C'est normal.",
+        screenshotAlt: "Étape 01 — Écran d'avertissement Windows SmartScreen",
       },
       {
         n: "02",
-        title: "Clique sur \u00ab\u00a0Informations complémentaires\u00a0\u00bb",
-        body: "SmartScreen cache le bouton Exécuter par défaut. Clique sur le petit lien \u00ab\u00a0Informations complémentaires\u00a0\u00bb — les détails de l'éditeur s'affichent et le bouton Exécuter quand même apparaît.",
+        title:
+          "Clique sur \u00ab\u00a0Informations complémentaires\u00a0\u00bb",
+        body: "SmartScreen planque le bouton Exécuter derrière ce petit lien. Clique dessus, les détails de l'éditeur se déplient et le bouton Exécuter quand même apparaît.",
         screenshotAlt:
           "Étape 02 — Lien Informations complémentaires révélant le bouton Exécuter quand même",
       },
       {
         n: "03",
         title: "Clique sur \u00ab\u00a0Exécuter quand même\u00a0\u00bb",
-        body: "L'installateur se lance et installe Skin Picker comme n'importe quelle app Windows. À partir de là, les mises à jour sont automatiques — plus d'avertissement, plus de re-téléchargement.",
-        screenshotAlt:
-          "Étape 03 — App installée, mises à jour auto gérées",
+        body: "L'installateur fait son travail et Skin Picker s'installe comme n'importe quelle app Windows. Les mises à jour sont automatiques ensuite, donc c'est un détour à faire une seule fois.",
+        screenshotAlt: "Étape 03 — App installée, mises à jour auto gérées",
       },
     ],
     transparencyLabel: "Transparence :",
     transparencyBody:
-      "tout le code source est public sur GitHub. Tu peux le lire, le compiler toi-même, ou auditer chaque release. L'installateur est publié automatiquement depuis le repo via GitHub Actions — pas de manipulation manuelle, pas de binaires cachés.",
+      "le code source est public sur GitHub. Lis-le, compile-le toi-même, vérifie la release que tu veux. L'installateur est publié directement depuis le repo par GitHub Actions, donc rien n'est assemblé à la main sur ma machine.",
   },
   cta: {
-    title: "Prêt à rouler ?",
+    title: "On lance ça ?",
     subtitle:
-      "Un seul installateur, puis l'app se met à jour toute seule. Windows 10 & 11.",
+      "Un installateur, et après l'app se met à jour toute seule. Windows 10 et 11.",
     releaseNotes: "Notes de version",
     stats: {
       version: "Version",
@@ -420,7 +423,7 @@ const fr: Dict = {
   },
   footer: {
     tagline:
-      "Une app Windows open-source qui tire, relance et synchronise automatiquement tes skins League of Legends avec ton équipe pendant le champ select.",
+      "Une app Windows open-source qui tire tes skins League of Legends pendant le champ select et les synchronise avec ton équipe.",
     productHeader: "Produit",
     projectHeader: "Projet",
     productLinks: {
@@ -448,18 +451,18 @@ const fr: Dict = {
     runAnyway: "Exécuter quand même",
     dontRun: "Ne pas exécuter",
     installed: "Installé !",
-    installedNote: "Mises à jour auto gérées par l'app.",
+    installedNote: "L'app se met à jour toute seule à partir de là.",
   },
   languageSwitcher: {
     label: "Langue",
   },
   faq: {
     eyebrow: "Sécurité & FAQ",
-    title: "Des réponses honnêtes.",
+    title: "Les questions qu'on me pose vraiment.",
     items: [
       {
         q: "Est-ce que Skin Picker peut me faire ban ?",
-        a: "Non — et voici exactement pourquoi. Skin Picker parle au client League via son API locale officielle (la LCU), en envoyant les mêmes requêtes que le client lui-même quand tu cliques sur un skin, et il ne peut sélectionner que des skins et chromas que tu possèdes déjà. Il ne modifie jamais les fichiers du jeu, n'injecte aucun code et ne lit jamais la mémoire — c'est précisément ce que Vanguard cible, et c'est pour ça que les « skin changers » qui débloquent des skins non possédés font bannir. Skin Picker est un outil d'une toute autre famille, celle de Blitz, Porofessor ou OP.GG. La FAQ développeurs de Riot sur Vanguard indique que les apps construites sur l'API LCU « are still expected to work », et Skin Picker est déclaré auprès de Riot via l'enregistrement produit de leur portail développeur.",
+        a: "Non, et voici le raisonnement. Skin Picker parle au client League via son API locale officielle, la LCU. Il envoie les mêmes requêtes que le client quand tu cliques toi-même sur un skin, et il ne peut sélectionner que des skins et chromas que tu possèdes déjà. Il ne touche pas aux fichiers du jeu, n'injecte pas de code et ne lit pas la mémoire. C'est ce dernier point que Vanguard surveille, et c'est pour ça que les skin changers qui débloquent des skins non possédés font bannir. Skin Picker est dans la même catégorie que Blitz, Porofessor ou OP.GG. La FAQ développeurs de Riot sur Vanguard dit que les apps construites sur l'API LCU « are still expected to work », et Skin Picker est enregistré auprès de Riot via leur Developer Portal.",
         link: {
           href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
           label: "Lire la FAQ Vanguard de Riot pour les développeurs",
@@ -467,15 +470,15 @@ const fr: Dict = {
       },
       {
         q: "Pourquoi Windows affiche un popup rouge ?",
-        a: "L'installateur n'est pas encore signé avec un certificat de code Microsoft payant. Windows affiche cet avertissement pour tout exécutable non signé — ce n'est pas un jugement sur la sécurité de l'app. Clique sur « Informations complémentaires » → « Exécuter quand même » pour continuer. Si tu préfères vérifier toi-même, le code source complet est public sur GitHub.",
+        a: "L'installateur n'est pas signé avec un certificat de signature Microsoft payant. Windows affiche ce popup pour tout exécutable non signé, quoi qu'il fasse, donc ce n'est pas un verdict sur l'app. Clique sur « Informations complémentaires », puis « Exécuter quand même ». Et si tu préfères vérifier toi-même, tout le code source est sur GitHub.",
       },
       {
         q: "Est-ce que ça fonctionne en jeu ?",
-        a: "Non. Skin Picker fait son travail pendant le champion select (phase de draft). Une fois la partie lancée, la fenêtre se replie dans la barre des tâches et l'app reste en veille — elle n'a aucune interaction avec le processus du jeu : pas d'overlay, pas de hook, rien qui puisse toucher tes FPS. Elle continue simplement d'observer l'API locale du client pour savoir quand tu reviens dans un lobby.",
+        a: "Non. Son travail s'arrête à la fin du champion select. Une fois la partie chargée, la fenêtre passe dans la barre des tâches et l'app ne bouge plus : pas d'overlay, pas de hook, rien qui approche tes FPS. Elle garde juste un œil sur l'API locale du client pour savoir quand tu reviens en lobby.",
       },
       {
         q: "Mes données sont-elles collectées ?",
-        a: "Pas sans ton accord. Au premier lancement, tu choisis si tu veux partager des statistiques d'usage anonymes (via Aptabase, un service d'analytics respectueux de la vie privée — aucune donnée de compte, aucune info personnelle), et tu peux changer d'avis à tout moment dans les réglages. À part ça, le trafic réseau de l'app se limite aux appels locaux vers l'API du client Riot et, quand tu rejoins une Room, à une connexion au serveur Rooms pour synchroniser les picks avec ton équipe.",
+        a: "Pas sans ton accord. Au premier lancement, tu choisis si tu veux envoyer des statistiques d'usage anonymes via Aptabase, un service d'analytics respectueux de la vie privée qui ne voit jamais ton compte ni la moindre info perso, et tu peux changer ce réglage quand tu veux. À part ça, l'app ne parle qu'à l'API locale du client Riot, plus au serveur Rooms quand tu es effectivement dans une room.",
       },
     ],
   },
