@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Plus, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Plus, ShieldCheck } from "lucide-react";
 import type { Dict } from "@/lib/i18n/dict";
 import { cn } from "@/lib/utils";
 import Reveal from "@/components/ui/Reveal";
@@ -25,7 +25,7 @@ export default function FAQ({ dict }: { dict: Dict }) {
 
         <dl className="space-y-3">
           {t.items.map((item, i) => (
-            <FAQItem key={i} q={item.q} a={item.a} index={i} />
+            <FAQItem key={i} q={item.q} a={item.a} link={item.link} index={i} />
           ))}
         </dl>
       </div>
@@ -33,7 +33,17 @@ export default function FAQ({ dict }: { dict: Dict }) {
   );
 }
 
-function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
+function FAQItem({
+  q,
+  a,
+  link,
+  index,
+}: {
+  q: string;
+  a: string;
+  link?: { href: string; label: string };
+  index: number;
+}) {
   const [open, setOpen] = useState(false);
   const reduced = useReducedMotion();
 
@@ -77,6 +87,17 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             >
               <dd className="px-6 pb-6 text-sm leading-relaxed text-muted">
                 {a}
+                {link && (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1 font-medium text-accent-strong transition-colors hover:text-ink"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                  </a>
+                )}
               </dd>
             </motion.div>
           )}

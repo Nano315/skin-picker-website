@@ -104,7 +104,7 @@ export type Dict = {
   faq: {
     eyebrow: string;
     title: string;
-    items: Array<{ q: string; a: string }>;
+    items: Array<{ q: string; a: string; link?: { href: string; label: string } }>;
   };
 };
 
@@ -247,7 +247,7 @@ const en: Dict = {
     },
     copyright: "© {year} Skin Picker. Free & open-source.",
     disclaimer:
-      "Skin Picker isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends.",
+      "Skin Picker isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.",
   },
   winPlaceholder: {
     title: "Windows protected your PC",
@@ -271,7 +271,11 @@ const en: Dict = {
     items: [
       {
         q: "Can Skin Picker get me banned?",
-        a: "No. Skin Picker only communicates with the League Client through Riot's official LCU WebSocket/REST API — the same interface used by every approved third-party tool. It doesn't inject code, doesn't modify game files, and has zero interaction with Vanguard. Riot has publicly stated that LCU-based tools are permitted.",
+        a: "No — and here's exactly why. Skin Picker talks to the League Client through its official local API (the LCU), sending the same requests the client itself sends when you click a skin, and it can only ever select skins and chromas you already own. It never modifies game files, never injects code, and never reads game memory — which is what Vanguard actually targets, and why \"skin changers\" that unlock unowned skins get banned. Skin Picker is a different kind of tool, in the same family as Blitz, Porofessor or OP.GG. Riot's own developer FAQ on Vanguard states that apps built on the LCU API \"are still expected to work\", and Skin Picker is declared to Riot through their Developer Portal product registration.",
+        link: {
+          href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
+          label: "Read Riot's Vanguard FAQ for developers",
+        },
       },
       {
         q: "Why does Windows show a red security popup?",
@@ -279,11 +283,11 @@ const en: Dict = {
       },
       {
         q: "Does it work while I'm in-game?",
-        a: "No. Skin Picker is only active during champion select (draft phase). Once the match starts it goes completely silent — no background processes affecting your FPS, no network calls, nothing.",
+        a: "No. Skin Picker does its job during champion select (draft phase). Once the match starts, the window hides to the tray and the app stays idle — it has zero interaction with the game process itself: no overlay, no hooks, nothing that could touch your FPS. It simply keeps watching the client's local API so it knows when you're back in a lobby.",
       },
       {
         q: "Is any data collected?",
-        a: "No telemetry by default. The only network traffic the app generates is local calls to Riot's LCU and, when you're in a Room session, a connection to the Rooms server to sync picks with your team. No analytics, no tracking, no third-party SDKs.",
+        a: "Not unless you say so. On first launch you choose whether to share anonymous usage statistics (via Aptabase, a privacy-focused analytics service — no account data, no personal information), and you can change your mind anytime in Settings. Beyond that, the app's network traffic is limited to local calls to Riot's client API and, when you join a Room, a connection to the Rooms server to sync picks with your team.",
       },
     ],
   },
@@ -431,7 +435,7 @@ const fr: Dict = {
     },
     copyright: "© {year} Skin Picker. Gratuit & open-source.",
     disclaimer:
-      "Skin Picker n'est pas approuvé par Riot Games et ne reflète pas les opinions ou avis de Riot Games ou de toute autre personne officiellement impliquée dans la production ou la gestion de League of Legends.",
+      "Skin Picker isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.",
   },
   winPlaceholder: {
     title: "Windows a protégé votre PC",
@@ -455,7 +459,11 @@ const fr: Dict = {
     items: [
       {
         q: "Est-ce que Skin Picker peut me faire ban ?",
-        a: "Non. Skin Picker communique uniquement avec le client League via l'API WebSocket/REST officielle de Riot (la LCU) — le même protocole utilisé par tous les outils tiers autorisés. Pas d'injection de code, pas de modification de fichiers, aucune interaction avec Vanguard. Riot a publiquement confirmé que les outils basés sur la LCU sont tolérés.",
+        a: "Non — et voici exactement pourquoi. Skin Picker parle au client League via son API locale officielle (la LCU), en envoyant les mêmes requêtes que le client lui-même quand tu cliques sur un skin, et il ne peut sélectionner que des skins et chromas que tu possèdes déjà. Il ne modifie jamais les fichiers du jeu, n'injecte aucun code et ne lit jamais la mémoire — c'est précisément ce que Vanguard cible, et c'est pour ça que les « skin changers » qui débloquent des skins non possédés font bannir. Skin Picker est un outil d'une toute autre famille, celle de Blitz, Porofessor ou OP.GG. La FAQ développeurs de Riot sur Vanguard indique que les apps construites sur l'API LCU « are still expected to work », et Skin Picker est déclaré auprès de Riot via l'enregistrement produit de leur portail développeur.",
+        link: {
+          href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
+          label: "Lire la FAQ Vanguard de Riot pour les développeurs",
+        },
       },
       {
         q: "Pourquoi Windows affiche un popup rouge ?",
@@ -463,11 +471,11 @@ const fr: Dict = {
       },
       {
         q: "Est-ce que ça fonctionne en jeu ?",
-        a: "Non. Skin Picker est actif uniquement pendant le champion select (phase de draft). Une fois la partie lancée, l'app se met complètement en veille — aucun processus en fond qui impacte ton FPS, aucune requête réseau, rien.",
+        a: "Non. Skin Picker fait son travail pendant le champion select (phase de draft). Une fois la partie lancée, la fenêtre se replie dans la barre des tâches et l'app reste en veille — elle n'a aucune interaction avec le processus du jeu : pas d'overlay, pas de hook, rien qui puisse toucher tes FPS. Elle continue simplement d'observer l'API locale du client pour savoir quand tu reviens dans un lobby.",
       },
       {
         q: "Mes données sont-elles collectées ?",
-        a: "Aucune télémétrie par défaut. Le seul trafic réseau généré par l'app, c'est les appels locaux vers la LCU de Riot et, quand tu es dans une session Rooms, une connexion au serveur Rooms pour synchroniser les picks avec ton équipe. Zéro analytics, zéro tracking, zéro SDK tiers.",
+        a: "Pas sans ton accord. Au premier lancement, tu choisis si tu veux partager des statistiques d'usage anonymes (via Aptabase, un service d'analytics respectueux de la vie privée — aucune donnée de compte, aucune info personnelle), et tu peux changer d'avis à tout moment dans les réglages. À part ça, le trafic réseau de l'app se limite aux appels locaux vers l'API du client Riot et, quand tu rejoins une Room, à une connexion au serveur Rooms pour synchroniser les picks avec ton équipe.",
       },
     ],
   },

@@ -83,9 +83,13 @@ export default function Footer({ dict, lang }: { dict: Dict; lang: Lang }) {
 
         <div className="section-divider my-10" />
 
-        <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted md:flex-row md:items-center">
-          <p>{t.copyright.replace("{year}", String(new Date().getFullYear()))}</p>
-          <p className="max-w-md leading-relaxed">{t.disclaimer}</p>
+        <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted md:flex-row md:items-start">
+          <p className="shrink-0">
+            {t.copyright.replace("{year}", String(new Date().getFullYear()))}
+          </p>
+          <p className="max-w-2xl leading-relaxed md:text-right">
+            {t.disclaimer}
+          </p>
         </div>
       </div>
     </footer>
