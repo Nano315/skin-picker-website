@@ -1,0 +1,8 @@
+# Le contexte de build est un `git archive` : ces entrées ne sont là qu'au cas où
+# quelqu'un construirait depuis un dossier de travail complet.
+node_modules
+.next
+.git
+.env*
+deploy
+tsconfig.tsbuildinfo

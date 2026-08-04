@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Auto-hébergement (homelab) : Next produit un serveur Node autonome avec
+  // seulement les dépendances utiles, ce que le Dockerfile recopie tel quel.
+  // Sans effet sur Vercel, qui ignore ce réglage.
+  output: "standalone",
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "github.com" },

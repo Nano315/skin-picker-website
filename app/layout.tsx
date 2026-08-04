@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/layout/Background";
 import AptabaseProvider from "@/components/analytics/AptabaseProvider";
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   title: "Skin Picker — Auto-roll & Sync League of Legends skins",
   description:
     "Skin Picker auto-picks, rerolls and synchronizes League of Legends skins across your team in champ select. Free, open-source, Windows.",
-  metadataBase: new URL("https://skin-picker-website.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
     languages: {

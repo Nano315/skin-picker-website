@@ -1,0 +1,31 @@
+# Compose de production — copie déployée sur le homelab : ~/services/skinpicker-site/
+# Le code vit dans ./src (extrait d'un `git archive` du dépôt skin-picker-website).
+#
+# Les variables viennent du fichier .env placé À CÔTÉ de ce compose (Docker
+# Compose le lit automatiquement pour la substitution) :
+#   SITE_URL=https://…            → inlinée au build (canonical, OG, sitemap, robots)
+#   APTABASE_APP_KEY=             → vide = télémétrie désactivée
+#   APTABASE_HOST=                → vide = Aptabase Cloud
+# ⚠️ Changer SITE_URL impose un `docker compose up -d --build` : la valeur est
+# figée dans le bundle, pas lue au démarrage.
+services:
+  skinpicker-site:
+    build:
+      context: ./src
+      args:
+        NEXT_PUBLIC_SITE_URL: ${SITE_URL}
+        NEXT_PUBLIC_APTABASE_APP_KEY: ${APTABASE_APP_KEY:-}
+        NEXT_PUBLIC_APTABASE_HOST: ${APTABASE_HOST:-}
+    container_name: skinpicker-site
+    restart: unless-stopped
+    ports:
+      - "8130:8130"   # accès LAN/Tailscale ; le tunnel joint http://skinpicker-site:8130
+    environment:
+      TZ: Europe/Paris
+    networks:
+      - climhub_default
+
+# Réseau du connecteur cloudflared : il joint le conteneur par son nom.
+networks:
+  climhub_default:
+    external: true
