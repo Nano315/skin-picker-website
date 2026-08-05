@@ -1,0 +1,32 @@
+# Le site n'avait aucune verification automatique : une erreur de types ou un
+# build casse ne se decouvrait qu'au deploiement manuel sur le serveur, soit
+# apres coup. Un site indisponible ou casse coute directement en referencement.
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Actions epinglees par SHA : un tag @v4 est mutable et peut etre
+      # repointe vers du code arbitraire (meme convention que les repos de l'app).
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
+
+      # `next build` est la seule etape qui detecte reellement une page cassee,
+      # une metadata invalide ou une route qui ne prerend plus.
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://lolskinpicker.nanodev.app
