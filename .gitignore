@@ -10,6 +10,9 @@ dist/
 .vercel
 .turbo
 next-env.d.ts
+# Etat de compilation incrementale de TypeScript : propre a chaque machine,
+# regenere a chaque build, et source de diffs parasites a chaque commit.
+tsconfig.tsbuildinfo
 
 # Claude Code local
 .claude/settings.local.json
