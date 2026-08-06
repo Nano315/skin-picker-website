@@ -23,10 +23,13 @@ export default function Nav({ dict, lang }: { dict: Dict; lang: Lang }) {
   const home = lang === "fr" ? "/fr" : "/";
   const t = dict.nav;
 
+  // Ancres prefixees par la home : le Nav est aussi monte sur les pages de
+  // contenu (/safety, /privacy), ou un simple "#features" resoudrait vers
+  // "/safety#features" — une ancre qui n'existe pas et un lien qui ne fait rien.
   const links = [
-    { href: "#features", label: t.features },
-    { href: "#install", label: t.install },
-    { href: "#download", label: t.download },
+    { href: `${home}#features`, label: t.features },
+    { href: `${home}#install`, label: t.install },
+    { href: `${home}#download`, label: t.download },
   ];
 
   return (

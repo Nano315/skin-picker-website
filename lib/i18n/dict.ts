@@ -83,6 +83,8 @@ export type Dict = {
     projectHeader: string;
     productLinks: { features: string; download: string; install: string };
     projectLinks: { github: string; releases: string; issues: string };
+    legalHeader: string;
+    legalLinks: { safety: string; privacy: string };
     copyright: string;
     disclaimer: string;
   };
@@ -248,6 +250,11 @@ const en: Dict = {
       github: "GitHub",
       releases: "Releases",
       issues: "Report an issue",
+    },
+    legalHeader: "Trust",
+    legalLinks: {
+      safety: "Will it get me banned?",
+      privacy: "Privacy & legal",
     },
     copyright: "© {year} Skin Picker. Free & open-source.",
     disclaimer:
@@ -435,6 +442,11 @@ const fr: Dict = {
       github: "GitHub",
       releases: "Releases",
       issues: "Signaler un bug",
+    },
+    legalHeader: "Confiance",
+    legalLinks: {
+      safety: "Est-ce que je vais être ban ?",
+      privacy: "Confidentialité & mentions légales",
     },
     copyright: "© {year} Skin Picker. Gratuit & open-source.",
     disclaimer:

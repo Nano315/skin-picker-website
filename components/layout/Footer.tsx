@@ -11,7 +11,7 @@ export default function Footer({ dict, lang }: { dict: Dict; lang: Lang }) {
   return (
     <footer className="relative z-10 mt-20 border-t border-white/5 bg-black/20">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-5">
           <div className="md:col-span-2">
             <Link href={home} className="inline-flex items-center gap-2">
               <Logo className="h-7 w-7" />
@@ -26,19 +26,33 @@ export default function Footer({ dict, lang }: { dict: Dict; lang: Lang }) {
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
               {t.productHeader}
             </p>
+            {/*
+              Ancres prefixees par la home : le Footer est aussi monte sur les
+              pages de contenu (/safety, /privacy), ou "#features" resoudrait
+              vers "/safety#features" — un lien qui ne mene nulle part.
+            */}
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#features" className="text-ink/80 hover:text-ink">
+                <a
+                  href={`${home}#features`}
+                  className="text-ink/80 hover:text-ink"
+                >
                   {t.productLinks.features}
                 </a>
               </li>
               <li>
-                <a href="#download" className="text-ink/80 hover:text-ink">
+                <a
+                  href={`${home}#download`}
+                  className="text-ink/80 hover:text-ink"
+                >
                   {t.productLinks.download}
                 </a>
               </li>
               <li>
-                <a href="#install" className="text-ink/80 hover:text-ink">
+                <a
+                  href={`${home}#install`}
+                  className="text-ink/80 hover:text-ink"
+                >
                   {t.productLinks.install}
                 </a>
               </li>
@@ -76,6 +90,30 @@ export default function Footer({ dict, lang }: { dict: Dict; lang: Lang }) {
                 >
                   {t.projectLinks.issues}
                 </FooterGithubLink>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
+              {t.legalHeader}
+            </p>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href={lang === "fr" ? "/fr/safety" : "/safety"}
+                  className="text-ink/80 hover:text-ink"
+                >
+                  {t.legalLinks.safety}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={lang === "fr" ? "/fr/privacy" : "/privacy"}
+                  className="text-ink/80 hover:text-ink"
+                >
+                  {t.legalLinks.privacy}
+                </Link>
               </li>
             </ul>
           </div>
