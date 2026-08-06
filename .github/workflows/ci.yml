@@ -34,4 +34,4 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://lolskinpicker.nanodev.app
+          NEXT_PUBLIC_SITE_URL: https://skinpicker.app

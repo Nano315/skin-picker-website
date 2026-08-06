@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/:path*",
-      "destination": "https://lolskinpicker.nanodev.app/:path*",
+      "destination": "https://skinpicker.app/:path*",
       "permanent": true
     }
   ]
