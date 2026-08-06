@@ -3,7 +3,12 @@
 # apres coup. Un site indisponible ou casse coute directement en referencement.
 name: CI
 
-on: [push, pull_request]
+# Push ecoute uniquement sur main : sinon chaque PR declenche deux runs
+# identiques (un pour le push de la branche, un pour la PR).
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 permissions:
   contents: read
