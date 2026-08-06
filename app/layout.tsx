@@ -12,29 +12,35 @@ const inter = Inter({
   display: "swap",
 });
 
+// « Skin Picker » seul est un mauvais actif de recherche : la SERP de cette
+// chaine est occupee par la dermatillomanie et par Minecraft. On qualifie donc
+// toujours le nom — « LoL Skin Picker » ou « Skin Picker for League of
+// Legends » — dans les titles, les H1 et les textes de liens.
 export const metadata: Metadata = {
-  title: "Skin Picker — Auto-roll & Sync League of Legends skins",
+  title:
+    "LoL Skin Picker — Random skin from the ones you own, applied in champ select",
   description:
-    "Skin Picker auto-picks, rerolls and synchronizes League of Legends skins across your team in champ select. Free, open-source, Windows.",
+    "Rolls a random skin and chroma from the ones you already own and applies it in champ select, through the League Client's own API. Syncs a whole premade on one skin line. Free, open-source, Windows.",
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
     languages: {
       en: "/",
       fr: "/fr",
+      "x-default": "/",
     },
   },
   openGraph: {
-    title: "Skin Picker",
+    title: "LoL Skin Picker",
     description:
-      "Auto-roll, reroll and synchronize LoL skins with your team in champ select.",
+      "It doesn't suggest a skin. It applies one — from the skins you already own, for you and your whole premade.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Skin Picker",
+    title: "LoL Skin Picker",
     description:
-      "Auto-roll, reroll and synchronize LoL skins with your team in champ select.",
+      "It doesn't suggest a skin. It applies one — from the skins you already own, for you and your whole premade.",
   },
 };
 

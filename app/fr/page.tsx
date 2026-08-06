@@ -12,26 +12,28 @@ import LandingViewTracker from "@/components/analytics/LandingViewTracker";
 
 export const revalidate = 600;
 
+// Cf. layout.tsx : le nom est toujours qualifie, jamais « Skin Picker » nu.
 export const metadata: Metadata = {
-  title: "Skin Picker — Auto-roll & synchro des skins League of Legends",
+  title:
+    "LoL Skin Picker — Un skin au hasard parmi les tiens, appliqué en champ select",
   description:
-    "Skin Picker tire, relance et synchronise automatiquement tes skins League of Legends avec ton équipe en champ select. Gratuit, open-source, Windows.",
+    "Tire un skin et un chroma au hasard parmi ceux que tu possèdes déjà et les applique en champ select, via l'API du client League. Synchronise toute une premade sur une même skin line. Gratuit, open-source, Windows.",
   alternates: {
     canonical: "/fr",
-    languages: { en: "/", fr: "/fr" },
+    languages: { en: "/", fr: "/fr", "x-default": "/" },
   },
   openGraph: {
-    title: "Skin Picker",
+    title: "LoL Skin Picker",
     description:
-      "Tire, relance et synchronise tes skins LoL avec ton équipe en champ select.",
+      "Il ne suggère pas un skin. Il le met — parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
     type: "website",
     locale: "fr_FR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Skin Picker",
+    title: "LoL Skin Picker",
     description:
-      "Tire, relance et synchronise tes skins LoL avec ton équipe en champ select.",
+      "Il ne suggère pas un skin. Il le met — parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
   },
 };
 

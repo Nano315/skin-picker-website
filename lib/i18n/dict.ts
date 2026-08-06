@@ -123,10 +123,14 @@ const en: Dict = {
   hero: {
     latestRelease: "Latest release",
     checkGithub: "Check GitHub",
-    titleLine1: "Stop scrolling",
-    titleLine2: "the skin list.",
+    // Le verbe porte la promesse : les concurrents SUGGERENT un skin, celui-ci
+    // l'APPLIQUE. Et « you already own » desamorce des la premiere ligne la
+    // confusion avec un skin changer, qui est la principale raison de ne pas
+    // installer l'app.
+    titleLine1: "It doesn't suggest a skin.",
+    titleLine2: "It puts it on.",
     subtitle:
-      "Skin Picker rolls a skin you own the second you lock in, and syncs the rest of your team if they're running it too.",
+      "A random skin and chroma from the ones you already own, applied in champ select through the League Client's own API — the same call it makes when you click a skin yourself. No game files touched, nothing injected, nothing unlocked.",
     viewGithub: "View on GitHub",
     free: "Free & open-source",
     autoUpdates: "Updates itself",
@@ -170,7 +174,12 @@ const en: Dict = {
       eyebrow: "Rooms · Multiplayer",
       titleLine1: "Team skins,",
       titleLine2: "without the Discord call.",
-      body: "Create a room and invite the friends you're already queuing with. Nobody has to add anyone: the invite lands in their app and they accept. From there everything syncs live. Pick a color and the team's chromas follow. Pick a skin line and everyone goes PROJECT, Star Guardian or Arcana together. When the lobby is ready, the server applies the combo for you.",
+      // « the server applies the combo » etait faux et contre-productif : le
+      // serveur ne fait que calculer et diffuser l'accord, chaque app applique
+      // le skin en local sur sa propre machine. La formulation d'origine
+      // suggerait qu'un serveur distant agit sur ton client — exactement ce qui
+      // inquiete quelqu'un qui a peur du ban.
+      body: "Create a room and invite the friends you're already queuing with. Nobody has to add anyone: the invite lands in their app and they accept. From there everything syncs live. Pick a color and the team's chromas follow. Pick a skin line and everyone goes PROJECT, Star Guardian or Arcana together. Once everyone has locked, each app applies its own skin — five clients, one theme, no one lifting a finger.",
       bullets: {
         live: {
           title: "Up to 5 players, live",
@@ -313,10 +322,12 @@ const fr: Dict = {
   hero: {
     latestRelease: "Dernière version",
     checkGithub: "Voir sur GitHub",
-    titleLine1: "Arrête de scroller",
-    titleLine2: "la liste des skins.",
+    // Cf. commentaire cote EN : le verbe porte la promesse, et « que tu
+    // possèdes déjà » desamorce la confusion avec un skin changer.
+    titleLine1: "Il ne suggère pas un skin.",
+    titleLine2: "Il le met.",
     subtitle:
-      "Skin Picker tire un skin que tu possèdes dès que tu lock, et synchronise le reste de l'équipe si elle l'a aussi.",
+      "Un skin et un chroma au hasard parmi ceux que tu possèdes déjà, appliqués en champ select via l'API du client League — le même appel qu'il fait quand tu cliques un skin toi-même. Aucun fichier de jeu touché, rien d'injecté, rien de débloqué.",
     viewGithub: "Voir sur GitHub",
     free: "Gratuit & open-source",
     autoUpdates: "Se met à jour tout seul",
@@ -361,7 +372,9 @@ const fr: Dict = {
       eyebrow: "Rooms · Multijoueur",
       titleLine1: "Des skins d'équipe,",
       titleLine2: "sans l'appel Discord.",
-      body: "Crée une room et invite les amis avec qui tu joues déjà. Personne n'a besoin d'ajouter personne : l'invitation arrive dans leur app et ils acceptent. Ensuite tout se synchronise en direct. Choisis une couleur, les chromas de l'équipe suivent. Choisis une skin line et tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Quand le lobby est prêt, le serveur applique la combo pour vous.",
+      // Cf. commentaire cote EN : le serveur calcule et diffuse, il n'applique
+      // rien sur ta machine.
+      body: "Crée une room et invite les amis avec qui tu joues déjà. Personne n'a besoin d'ajouter personne : l'invitation arrive dans leur app et ils acceptent. Ensuite tout se synchronise en direct. Choisis une couleur, les chromas de l'équipe suivent. Choisis une skin line et tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Une fois que tout le monde a lock, chaque app applique son propre skin — cinq clients, un thème, personne n'a rien à faire.",
       bullets: {
         live: {
           title: "Jusqu'à 5 joueurs, en direct",
