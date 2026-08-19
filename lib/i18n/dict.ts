@@ -130,7 +130,7 @@ const en: Dict = {
     titleLine1: "It doesn't suggest a skin.",
     titleLine2: "It puts it on.",
     subtitle:
-      "A random skin and chroma from the ones you already own, applied in champ select through the League Client's own API — the same call it makes when you click a skin yourself. No game files touched, nothing injected, nothing unlocked.",
+      "Rolls a random skin and chroma from the ones you already own, then applies it in champ select through the League Client's own API. Same request the client sends when you click a skin yourself. No files touched, nothing injected.",
     viewGithub: "View on GitHub",
     free: "Free & open-source",
     autoUpdates: "Updates itself",
@@ -148,7 +148,7 @@ const en: Dict = {
     solo: {
       eyebrow: "Solo",
       title: "Lock in, get a skin.",
-      body: "Lock your champion and Skin Picker rolls a skin and chroma you own. Don't like it? Reroll. You can weight the skins you love upward and push the ones you never want down, and it remembers what you've played recently, so you won't get the same skin three games in a row.",
+      body: "Lock your champion and Skin Picker rolls a skin and chroma you own. Don't like it? Reroll. Skins you love can be weighted up, the ones you're sick of weighted down to almost never, and it keeps track of your recent rolls so you're not stuck with the same skin three games running.",
       bullets: {
         autoRoll: {
           title: "Auto-roll on lock",
@@ -164,7 +164,7 @@ const en: Dict = {
         },
         history: {
           title: "Won't repeat itself",
-          body: "Skips your last few picks so games stop looking alike.",
+          body: "Skips whatever you rolled recently, so no reruns.",
         },
       },
       screenshotAlt:
@@ -179,7 +179,7 @@ const en: Dict = {
       // le skin en local sur sa propre machine. La formulation d'origine
       // suggerait qu'un serveur distant agit sur ton client — exactement ce qui
       // inquiete quelqu'un qui a peur du ban.
-      body: "Create a room and invite the friends you're already queuing with. Nobody has to add anyone: the invite lands in their app and they accept. From there everything syncs live. Pick a color and the team's chromas follow. Pick a skin line and everyone goes PROJECT, Star Guardian or Arcana together. Once everyone has locked, each app applies its own skin — five clients, one theme, no one lifting a finger.",
+      body: "Create a room and invite the friends you already queue with. No one has to add anyone: the invite shows up in their app, they accept, done. After that it syncs live. Pick a color and the team's chromas fall in behind it. Pick a skin line and you all go PROJECT, Star Guardian or Arcana together. Once everyone has locked, each app applies its own skin on its own machine. Five clients, one theme, and nobody had to click.",
       bullets: {
         live: {
           title: "Up to 5 players, live",
@@ -191,7 +191,7 @@ const en: Dict = {
         },
         skinLine: {
           title: "Skin line sync",
-          body: "Works out which thematic lines you all own between you, then picks a matching set.",
+          body: "Finds the lines you all happen to own, then picks a matching set.",
         },
         autoApply: {
           title: "Auto-apply",
@@ -206,31 +206,30 @@ const en: Dict = {
     eyebrow: "Install in 30 seconds",
     title: "About the Windows warning",
     intro:
-      "Skin Picker is a personal project and I haven't paid for a Microsoft signing certificate yet. Windows warns about any unsigned app, which tells you nothing about what the app actually does. Here's how to get past it.",
+      "Skin Picker is a personal project and I haven't paid for a Microsoft signing certificate yet. Windows warns about every unsigned app it sees, whatever that app happens to do, so the warning says nothing about this one. Getting past it takes two clicks.",
     steps: [
       {
         n: "01",
         title: "Run the installer",
-        body: "Double-click the file you just downloaded. SmartScreen throws up a warning because the app isn't signed. That's expected.",
-        screenshotAlt: "Step 01 — Windows SmartScreen warning screen",
+        body: "Double-click the file you just downloaded. SmartScreen throws up a warning because the app isn't signed. Normal, keep going.",
+        screenshotAlt: "Step 01: Windows SmartScreen warning screen",
       },
       {
         n: "02",
         title: 'Click "More info"',
-        body: "SmartScreen hides the Run button behind that small link. Click it, the publisher details expand and the Run anyway button shows up.",
-        screenshotAlt:
-          "Step 02 — More info link revealing the Run anyway button",
+        body: "SmartScreen hides the Run button behind that small link. Click it and the panel expands, with the Run anyway button underneath.",
+        screenshotAlt: "Step 02: More info link revealing the Run anyway button",
       },
       {
         n: "03",
         title: 'Click "Run anyway"',
-        body: "The installer does its thing and Skin Picker sets up like any other Windows app. Updates are automatic from then on, so this is a one-time detour.",
-        screenshotAlt: "Step 03 — App installed, auto-updates handled",
+        body: "The installer runs and Skin Picker sets up like any other Windows app. Updates are automatic after that, so you only do this once.",
+        screenshotAlt: "Step 03: app installed, auto-updates handled",
       },
     ],
     transparencyLabel: "Transparency:",
     transparencyBody:
-      "the source code is public on GitHub. Read it, build it yourself, check any release you like. The installer is published straight from the repo by GitHub Actions, so nothing gets assembled by hand on my machine.",
+      "the source code is public on GitHub. Read it, or build it yourself if you'd rather. The installer is published straight from the repo by GitHub Actions, so nothing gets assembled by hand on my machine.",
   },
   cta: {
     title: "Ready to roll?",
@@ -247,7 +246,7 @@ const en: Dict = {
   },
   footer: {
     tagline:
-      "An open-source Windows app that rolls your League of Legends skins during champ select and syncs them with your team.",
+      "An open-source Windows app that picks your League of Legends skins in champ select and syncs them with your team.",
     productHeader: "Product",
     projectHeader: "Project",
     productLinks: {
@@ -291,7 +290,7 @@ const en: Dict = {
     items: [
       {
         q: "Can Skin Picker get me banned?",
-        a: "No, and here's the reasoning. Skin Picker talks to the League client through its official local API, the LCU. It sends the same requests the client sends when you click a skin yourself, and it can only ever select skins and chromas you already own. It doesn't touch game files, inject code or read game memory. That last part is what Vanguard looks for, and it's why the skin changers that unlock skins you don't own get people banned. Skin Picker sits in the same category as Blitz, Porofessor or OP.GG. Riot's developer FAQ on Vanguard says apps built on the LCU API \"are still expected to work\", and Skin Picker is registered with Riot through their Developer Portal.",
+        a: "No. Skin Picker talks to the League client through its official local API, the LCU. It sends the same requests the client sends when you click a skin yourself, and it can only ever select skins and chromas you already own. It never touches game files, injects code or reads memory. Memory reading is what Vanguard is looking for, and it's why skin changers that unlock skins you haven't bought get people banned. Same category as Blitz, Porofessor or OP.GG. Riot's developer FAQ on Vanguard says apps built on the LCU API \"are still expected to work\", and Skin Picker is registered with Riot through their Developer Portal.",
         link: {
           href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
           label: "Read Riot's Vanguard FAQ for developers",
@@ -303,11 +302,11 @@ const en: Dict = {
       },
       {
         q: "Does it work while I'm in-game?",
-        a: "No. Its job is finished by the end of champion select. Once the match loads, the window goes to the tray and the app sits there: no overlay, no hooks, nothing anywhere near your FPS. It just keeps an eye on the client's local API so it knows when you're back in a lobby.",
+        a: "No. Its job is over by the end of champion select. Once the match loads, the window goes to the tray and stays there. No overlay, no hooks, nothing that goes anywhere near your FPS. It just watches the client's local API so it knows when you're back in a lobby.",
       },
       {
         q: "Is any data collected?",
-        a: "Not unless you say yes. On first launch you choose whether to send anonymous usage stats through Aptabase, a privacy-focused analytics service that never sees your account or anything personal, and you can flip that setting whenever you want. Beyond that, the app only talks to Riot's local client API, plus the Rooms server while you're actually in a room.",
+        a: "Not unless you say yes. On first launch the app asks whether you want to send anonymous usage stats through Aptabase, an analytics service that never sees your account or anything personal, and you can change that answer later in the settings. Otherwise the app only talks to Riot's local client API, and to the Rooms server while you're actually in a room.",
       },
     ],
   },
@@ -327,7 +326,7 @@ const fr: Dict = {
     titleLine1: "Il ne suggère pas un skin.",
     titleLine2: "Il le met.",
     subtitle:
-      "Un skin et un chroma au hasard parmi ceux que tu possèdes déjà, appliqués en champ select via l'API du client League — le même appel qu'il fait quand tu cliques un skin toi-même. Aucun fichier de jeu touché, rien d'injecté, rien de débloqué.",
+      "Il tire un skin et un chroma au hasard parmi ceux que tu possèdes déjà, puis les applique en champ select via l'API du client League. La même requête que le client envoie quand tu cliques un skin toi-même. Aucun fichier touché, rien d'injecté.",
     viewGithub: "Voir sur GitHub",
     free: "Gratuit & open-source",
     autoUpdates: "Se met à jour tout seul",
@@ -346,7 +345,7 @@ const fr: Dict = {
     solo: {
       eyebrow: "Solo",
       title: "Tu lock, tu as ton skin.",
-      body: "Tu lock ton champion, Skin Picker tire un skin et un chroma que tu possèdes. Ça te plaît pas ? Relance. Tu peux monter le poids des skins que tu adores, descendre celui de ceux que tu ne veux plus voir, et l'app retient tes derniers tirages, donc pas de même skin trois games d'affilée.",
+      body: "Tu lock ton champion, Skin Picker tire un skin et un chroma que tu possèdes. Ça te plaît pas ? Relance. Les skins que tu adores peuvent monter en poids, ceux que tu ne veux plus voir descendre jusqu'à presque jamais, et l'app retient tes derniers tirages pour t'éviter le même skin trois games d'affilée.",
       bullets: {
         autoRoll: {
           title: "Tirage auto au lock",
@@ -362,7 +361,7 @@ const fr: Dict = {
         },
         history: {
           title: "Anti-répétition",
-          body: "Écarte tes derniers picks pour que les games ne se ressemblent pas.",
+          body: "Écarte ce que tu viens de tirer, donc pas deux fois le même.",
         },
       },
       screenshotAlt:
@@ -374,7 +373,7 @@ const fr: Dict = {
       titleLine2: "sans l'appel Discord.",
       // Cf. commentaire cote EN : le serveur calcule et diffuse, il n'applique
       // rien sur ta machine.
-      body: "Crée une room et invite les amis avec qui tu joues déjà. Personne n'a besoin d'ajouter personne : l'invitation arrive dans leur app et ils acceptent. Ensuite tout se synchronise en direct. Choisis une couleur, les chromas de l'équipe suivent. Choisis une skin line et tout le monde part en PROJECT, Star Guardian ou Arcana ensemble. Une fois que tout le monde a lock, chaque app applique son propre skin — cinq clients, un thème, personne n'a rien à faire.",
+      body: "Crée une room et invite les amis avec qui tu joues déjà. Personne n'a besoin d'ajouter personne : l'invitation arrive dans leur app, ils acceptent, c'est réglé. Ensuite tout se synchronise en direct. Choisis une couleur, les chromas de l'équipe s'alignent derrière. Choisis une skin line et vous partez tous en PROJECT, Star Guardian ou Arcana ensemble. Une fois que tout le monde a lock, chaque app applique son propre skin sur sa propre machine. Cinq clients, un thème, et personne n'a eu à cliquer.",
       bullets: {
         live: {
           title: "Jusqu'à 5 joueurs, en direct",
@@ -386,7 +385,7 @@ const fr: Dict = {
         },
         skinLine: {
           title: "Synchro skin line",
-          body: "Regarde quelles lignes thématiques vous possédez tous, puis pick un set assorti.",
+          body: "Trouve les lignes que vous avez tous, puis pick un set assorti.",
         },
         autoApply: {
           title: "Application auto",
@@ -401,32 +400,32 @@ const fr: Dict = {
     eyebrow: "Installation en 30 secondes",
     title: "À propos de l'avertissement Windows",
     intro:
-      "Skin Picker est un projet perso, et je n'ai pas encore payé de certificat de signature Microsoft. Windows prévient pour toute app non signée, ce qui ne dit rien sur ce que l'app fait vraiment. Voici comment passer outre.",
+      "Skin Picker est un projet perso, et je n'ai pas encore payé de certificat de signature Microsoft. Windows prévient pour toute app non signée, quoi qu'elle fasse, donc l'avertissement ne dit rien sur celle-ci. Le contourner prend deux clics.",
     steps: [
       {
         n: "01",
         title: "Lance l'installateur",
-        body: "Double-clique sur le fichier que tu viens de télécharger. SmartScreen va afficher un avertissement parce que l'app n'est pas signée. C'est normal.",
-        screenshotAlt: "Étape 01 — Écran d'avertissement Windows SmartScreen",
+        body: "Double-clique sur le fichier que tu viens de télécharger. SmartScreen va afficher un avertissement parce que l'app n'est pas signée. C'est normal, continue.",
+        screenshotAlt: "Étape 01 : écran d'avertissement Windows SmartScreen",
       },
       {
         n: "02",
         title:
           "Clique sur \u00ab\u00a0Informations complémentaires\u00a0\u00bb",
-        body: "SmartScreen planque le bouton Exécuter derrière ce petit lien. Clique dessus, les détails de l'éditeur se déplient et le bouton Exécuter quand même apparaît.",
+        body: "SmartScreen planque le bouton Exécuter derrière ce petit lien. Clique dessus : le panneau se déplie, avec le bouton Exécuter quand même en dessous.",
         screenshotAlt:
-          "Étape 02 — Lien Informations complémentaires révélant le bouton Exécuter quand même",
+          "Étape 02 : lien Informations complémentaires révélant le bouton Exécuter quand même",
       },
       {
         n: "03",
         title: "Clique sur \u00ab\u00a0Exécuter quand même\u00a0\u00bb",
-        body: "L'installateur fait son travail et Skin Picker s'installe comme n'importe quelle app Windows. Les mises à jour sont automatiques ensuite, donc c'est un détour à faire une seule fois.",
-        screenshotAlt: "Étape 03 — App installée, mises à jour auto gérées",
+        body: "L'installateur tourne et Skin Picker s'installe comme n'importe quelle app Windows. Les mises à jour sont automatiques ensuite, donc tu ne fais ça qu'une fois.",
+        screenshotAlt: "Étape 03 : app installée, mises à jour auto gérées",
       },
     ],
     transparencyLabel: "Transparence :",
     transparencyBody:
-      "le code source est public sur GitHub. Lis-le, compile-le toi-même, vérifie la release que tu veux. L'installateur est publié directement depuis le repo par GitHub Actions, donc rien n'est assemblé à la main sur ma machine.",
+      "le code source est public sur GitHub. Lis-le, ou compile-le toi-même si tu préfères. L'installateur est publié directement depuis le repo par GitHub Actions, donc rien n'est assemblé à la main sur ma machine.",
   },
   cta: {
     title: "On lance ça ?",
@@ -443,7 +442,7 @@ const fr: Dict = {
   },
   footer: {
     tagline:
-      "Une app Windows open-source qui tire tes skins League of Legends pendant le champ select et les synchronise avec ton équipe.",
+      "Une app Windows open-source qui choisit tes skins League of Legends en champ select et les synchronise avec ton équipe.",
     productHeader: "Produit",
     projectHeader: "Projet",
     productLinks: {
@@ -487,7 +486,7 @@ const fr: Dict = {
     items: [
       {
         q: "Est-ce que Skin Picker peut me faire ban ?",
-        a: "Non, et voici le raisonnement. Skin Picker parle au client League via son API locale officielle, la LCU. Il envoie les mêmes requêtes que le client quand tu cliques toi-même sur un skin, et il ne peut sélectionner que des skins et chromas que tu possèdes déjà. Il ne touche pas aux fichiers du jeu, n'injecte pas de code et ne lit pas la mémoire. C'est ce dernier point que Vanguard surveille, et c'est pour ça que les skin changers qui débloquent des skins non possédés font bannir. Skin Picker est dans la même catégorie que Blitz, Porofessor ou OP.GG. La FAQ développeurs de Riot sur Vanguard dit que les apps construites sur l'API LCU « are still expected to work », et Skin Picker est enregistré auprès de Riot via leur Developer Portal.",
+        a: "Non. Skin Picker parle au client League via son API locale officielle, la LCU. Il envoie les mêmes requêtes que le client quand tu cliques toi-même sur un skin, et il ne peut sélectionner que des skins et chromas que tu possèdes déjà. Il ne touche jamais aux fichiers du jeu, n'injecte pas de code et ne lit pas la mémoire. C'est la lecture mémoire que Vanguard surveille, et c'est pour ça que les skin changers qui débloquent des skins non achetés font bannir. Même catégorie que Blitz, Porofessor ou OP.GG. La FAQ développeurs de Riot sur Vanguard dit que les apps construites sur l'API LCU « are still expected to work », et Skin Picker est enregistré auprès de Riot via leur Developer Portal.",
         link: {
           href: "https://www.riotgames.com/en/DevRel/vanguard-faq",
           label: "Lire la FAQ Vanguard de Riot pour les développeurs",
@@ -499,11 +498,11 @@ const fr: Dict = {
       },
       {
         q: "Est-ce que ça fonctionne en jeu ?",
-        a: "Non. Son travail s'arrête à la fin du champion select. Une fois la partie chargée, la fenêtre passe dans la barre des tâches et l'app ne bouge plus : pas d'overlay, pas de hook, rien qui approche tes FPS. Elle garde juste un œil sur l'API locale du client pour savoir quand tu reviens en lobby.",
+        a: "Non. Son travail s'arrête à la fin du champion select. Une fois la partie chargée, la fenêtre passe dans la barre des tâches et n'en bouge plus. Pas d'overlay, pas de hook, rien qui approche tes FPS. Elle surveille juste l'API locale du client pour savoir quand tu reviens en lobby.",
       },
       {
         q: "Mes données sont-elles collectées ?",
-        a: "Pas sans ton accord. Au premier lancement, tu choisis si tu veux envoyer des statistiques d'usage anonymes via Aptabase, un service d'analytics respectueux de la vie privée qui ne voit jamais ton compte ni la moindre info perso, et tu peux changer ce réglage quand tu veux. À part ça, l'app ne parle qu'à l'API locale du client Riot, plus au serveur Rooms quand tu es effectivement dans une room.",
+        a: "Pas sans ton accord. Au premier lancement, l'app te demande si tu veux envoyer des statistiques d'usage anonymes via Aptabase, un service d'analytics qui ne voit jamais ton compte ni la moindre info perso, et tu peux revenir sur ta réponse dans les réglages. Sinon, l'app ne parle qu'à l'API locale du client Riot, et au serveur Rooms quand tu es effectivement dans une room.",
       },
     ],
   },

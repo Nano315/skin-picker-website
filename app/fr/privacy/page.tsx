@@ -4,7 +4,7 @@ import { getDict } from "@/lib/i18n/dict";
 import ContentPage from "@/components/layout/ContentPage";
 
 export const metadata: Metadata = {
-  title: "Confidentialité & mentions légales — LoL Skin Picker",
+  title: "Confidentialité & mentions légales | LoL Skin Picker",
   description:
     "Quelles données Skin Picker collecte, lesquelles il ne collecte pas, et qui l'édite. La télémétrie de l'app est opt-in et désactivée par défaut ; le serveur rooms ne garde rien sur disque.",
   alternates: {
@@ -22,16 +22,16 @@ export default function PrivacyPageFr() {
       lang="fr"
       eyebrow="Confidentialité"
       title="Confidentialité & mentions légales"
-      intro="Skin Picker n'a ni compte, ni profil, ni publicité. Cette page décrit exactement ce que traitent l'application, le site et le serveur de rooms — et ce qu'aucun des trois ne fait."
+      intro="Skin Picker n'a ni compte, ni profil, ni publicité. Cette page dit ce que traitent l'application, le site et le serveur de rooms, et ce qu'aucun des trois ne fait."
       updatedLabel="Mis à jour le 6 août 2026"
     >
       <h2>L&apos;application</h2>
       <p>
         <strong>La télémétrie est opt-in et désactivée par défaut.</strong> Au
         premier lancement, l&apos;app te demande si tu acceptes de partager des
-        statistiques d&apos;usage anonymes. Si tu refuses — ou si tu fermes
-        simplement la fenêtre — rien n&apos;est jamais envoyé. Tu peux changer
-        d&apos;avis à tout moment dans les réglages, dans les deux sens.
+        statistiques d&apos;usage anonymes. Refuse, ou ferme simplement la
+        fenêtre, et rien n&apos;est jamais envoyé. Tu peux changer d&apos;avis
+        plus tard dans les réglages, dans les deux sens.
       </p>
       <p>
         Si tu acceptes, des événements anonymes transitent par{" "}
@@ -63,9 +63,10 @@ export default function PrivacyPageFr() {
       </p>
       <ul>
         <li>
-          <strong>Rien n&apos;est stocké en base de données — il n&apos;y en a
-          pas.</strong> L&apos;état des rooms vit dans la mémoire du serveur et
-          disparaît à la fermeture de la room ou au redémarrage du serveur.
+          <strong>Rien n&apos;est stocké en base de données, parce qu&apos;il
+          n&apos;y en a pas.</strong> L&apos;état des rooms vit dans la mémoire du
+          serveur et disparaît à la fermeture de la room ou au redémarrage du
+          serveur.
         </li>
         <li>
           Pendant qu&apos;une room est ouverte, le serveur détient ce que tu
@@ -76,8 +77,8 @@ export default function PrivacyPageFr() {
         </li>
         <li>
           Des logs de diagnostic sont écrits sur disque. Ils contiennent ton nom
-          d&apos;invocateur et un identifiant de compte <strong>tronqué</strong> —
-          jamais l&apos;identifiant complet, et jamais le jeton qui authentifie
+          d&apos;invocateur et un identifiant de compte <strong>tronqué</strong>.
+          Jamais l&apos;identifiant complet, et jamais le jeton qui authentifie
           tes actions.
         </li>
         <li>
@@ -93,9 +94,9 @@ export default function PrivacyPageFr() {
       <h2>Ce site</h2>
       <p>
         Le site mesure son audience via Aptabase, le même service que
-        l&apos;application. Il enregistre les pages vues et quelques interactions
-        — la langue choisie, un clic sur le téléchargement ou sur le lien GitHub.
-        Un identifiant aléatoire est conservé dans ton navigateur pour éviter de
+        l&apos;application. Il enregistre les pages vues et quelques interactions :
+        la langue choisie, un clic sur le téléchargement ou sur le lien GitHub. Un
+        identifiant aléatoire est conservé dans ton navigateur pour éviter de
         compter deux fois le même visiteur.
       </p>
       <p>
@@ -104,17 +105,16 @@ export default function PrivacyPageFr() {
         déduit de ton adresse IP, qui n&apos;est pas conservée.
       </p>
       <p>
-        Précision, par souci d&apos;honnêteté : contrairement à
-        l&apos;application, le site charge cette mesure sans te demander ton
-        accord au préalable. Si tu préfères l&apos;éviter, n&apos;importe quel
-        bloqueur de contenu la neutralise, et le site fonctionne exactement
-        pareil.
+        Pour être clair avec toi : contrairement à l&apos;application, le site
+        charge cette mesure sans te demander ton accord. Si tu préfères
+        l&apos;éviter, n&apos;importe quel bloqueur de contenu la neutralise et
+        rien d&apos;autre ne change.
       </p>
 
       <h2>Tes droits</h2>
       <p>
-        Comme il n&apos;y a ni compte ni profil personnel, il n&apos;y a
-        généralement rien à te donner, corriger ou effacer — c&apos;est un choix
+        Il n&apos;y a ni compte ni profil personnel, donc dans la plupart des cas
+        il n&apos;y a rien à te donner, corriger ou effacer. C&apos;est un choix
         de conception, pas un raccourci. Si tu as malgré tout une question ou une
         demande concernant tes données, écris-moi à l&apos;adresse ci-dessous et
         j&apos;y répondrai.

@@ -15,7 +15,7 @@ export const revalidate = 600;
 // Cf. layout.tsx : le nom est toujours qualifie, jamais « Skin Picker » nu.
 export const metadata: Metadata = {
   title:
-    "LoL Skin Picker — Un skin au hasard parmi les tiens, appliqué en champ select",
+    "LoL Skin Picker | Un skin au hasard parmi les tiens, appliqué en champ select",
   description:
     "Tire un skin et un chroma au hasard parmi ceux que tu possèdes déjà et les applique en champ select, via l'API du client League. Synchronise toute une premade sur une même skin line. Gratuit, open-source, Windows.",
   alternates: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LoL Skin Picker",
     description:
-      "Il ne suggère pas un skin. Il le met — parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
+      "Il ne suggère pas un skin. Il le met, direct, parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
     type: "website",
     locale: "fr_FR",
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LoL Skin Picker",
     description:
-      "Il ne suggère pas un skin. Il le met — parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
+      "Il ne suggère pas un skin. Il le met, direct, parmi ceux que tu possèdes déjà, pour toi et toute ta premade.",
   },
 };
 

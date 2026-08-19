@@ -18,7 +18,7 @@ const inter = Inter({
 // Legends » — dans les titles, les H1 et les textes de liens.
 export const metadata: Metadata = {
   title:
-    "LoL Skin Picker — Random skin from the ones you own, applied in champ select",
+    "LoL Skin Picker | Random skin from the ones you own, applied in champ select",
   description:
     "Rolls a random skin and chroma from the ones you already own and applies it in champ select, through the League Client's own API. Syncs a whole premade on one skin line. Free, open-source, Windows.",
   metadataBase: new URL(SITE_URL),
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LoL Skin Picker",
     description:
-      "It doesn't suggest a skin. It applies one — from the skins you already own, for you and your whole premade.",
+      "It doesn't suggest a skin. It puts it on, straight from the skins you already own, for you and your whole premade.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "LoL Skin Picker",
     description:
-      "It doesn't suggest a skin. It applies one — from the skins you already own, for you and your whole premade.",
+      "It doesn't suggest a skin. It puts it on, straight from the skins you already own, for you and your whole premade.",
   },
 };
 

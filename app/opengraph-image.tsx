@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 export const revalidate = 600;
 
 export const alt =
-  "Skin Picker — Auto-roll and sync League of Legends skins in champ select";
+  "Skin Picker: auto-roll and sync League of Legends skins in champ select";
 export const size = OG_SIZE;
 export const contentType = "image/png";
 

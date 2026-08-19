@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 export const revalidate = 600;
 
 export const alt =
-  "Skin Picker — Roll et synchro des skins League of Legends en champ select";
+  "Skin Picker : roll et synchro des skins League of Legends en champ select";
 export const size = OG_SIZE;
 export const contentType = "image/png";
 

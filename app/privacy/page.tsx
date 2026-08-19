@@ -4,7 +4,7 @@ import { getDict } from "@/lib/i18n/dict";
 import ContentPage from "@/components/layout/ContentPage";
 
 export const metadata: Metadata = {
-  title: "Privacy & legal notice — LoL Skin Picker",
+  title: "Privacy & legal notice | LoL Skin Picker",
   description:
     "What data Skin Picker collects, what it doesn't, and who runs it. The desktop app's telemetry is opt-in and off by default; the rooms server keeps nothing on disk.",
   alternates: {
@@ -22,15 +22,15 @@ export default function PrivacyPage() {
       lang="en"
       eyebrow="Privacy"
       title="Privacy & legal notice"
-      intro="Skin Picker has no accounts, no profiles and no advertising. This page describes exactly what the app, the website and the rooms server each handle — and what none of them do."
+      intro="Skin Picker has no accounts, no profiles, no advertising. This page says what the app, the website and the rooms server each handle, and what none of them do."
       updatedLabel="Last updated 6 August 2026"
     >
       <h2>The desktop app</h2>
       <p>
         <strong>Telemetry is opt-in and off by default.</strong> On first launch
-        the app asks whether you want to share anonymous usage statistics. If you
-        decline — or simply close the dialog — nothing is ever sent. You can
-        change your mind at any time in Settings, in both directions.
+        the app asks whether you want to share anonymous usage statistics.
+        Decline, or just close the dialog, and nothing is ever sent. You can
+        change your mind later in Settings, in both directions.
       </p>
       <p>
         If you accept, anonymous events are sent through{" "}
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
       </p>
       <ul>
         <li>
-          <strong>Nothing is stored in a database — there isn&apos;t one.</strong>{" "}
+          <strong>Nothing is stored in a database, because there isn&apos;t one.</strong>{" "}
           Room state lives in the server&apos;s memory and disappears when the
           room closes or the server restarts.
         </li>
@@ -73,8 +73,8 @@ export default function PrivacyPage() {
         </li>
         <li>
           Diagnostic logs are written to disk. They contain your summoner name
-          and a <strong>truncated</strong> account identifier — never the full
-          one, and never the token that authenticates your actions.
+          and a <strong>truncated</strong> account identifier. Never the full one,
+          and never the token that authenticates your actions.
         </li>
         <li>
           The server never contacts Riot. It only ever sees what a client sends
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
       <h2>This website</h2>
       <p>
         The site measures audience through Aptabase, the same service as the app.
-        It records page views and a handful of interactions — which language you
+        It records page views and a handful of interactions: which language you
         picked, whether you clicked download or the GitHub link. A random
         identifier is kept in your browser to avoid counting the same visitor
         twice.
@@ -99,18 +99,17 @@ export default function PrivacyPage() {
         address, which is not stored.
       </p>
       <p>
-        Note, in the interest of being straight with you: unlike the app, the
-        website loads this measurement without asking first. If you would rather
-        it didn&apos;t, any content blocker will stop it, and the site works
-        exactly the same.
+        To be straight with you: unlike the app, the site loads this measurement
+        without asking first. If you&apos;d rather it didn&apos;t, any content
+        blocker stops it and nothing else changes.
       </p>
 
       <h2>Your rights</h2>
       <p>
-        Since there is no account and no personal profile, there is generally
-        nothing to give you access to, correct or erase — that is a design
-        choice, not a shortcut. If you nonetheless have a question or a request
-        about your data, write to me at the address below and I&apos;ll answer.
+        There is no account and no personal profile, so in most cases there is
+        nothing to give you access to, correct or erase. That is a design choice,
+        not a shortcut. If you have a question or a request about your data
+        anyway, write to me at the address below and I&apos;ll answer.
       </p>
 
       <h2>Legal notice</h2>
