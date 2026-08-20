@@ -16,6 +16,11 @@ import { init, trackEvent } from "@aptabase/web";
 type EventName =
   | "landing_viewed"
   | "download_clicked"
+  | "download_page_viewed"
+  | "download_started"
+  | "download_retried"
+  | "install_step_selected"
+  | "checksum_copied"
   | "github_clicked"
   | "language_switched"
   | "release_notes_clicked";
@@ -66,6 +71,43 @@ export const trackDownloadClicked = (opts: {
     version: opts.version ?? "unknown",
     hasDirectDownload: opts.hasDirectDownload,
   });
+
+// Funnel de telechargement. `download_clicked` se declenche sur la landing,
+// `download_page_viewed` a l'arrivee sur /download et `download_started` quand
+// le fichier part reellement. L'ecart entre les deux premiers mesure les gens
+// perdus par la navigation ; l'ecart entre `download_started` et le premier
+// lancement remonte par l'app mesure ceux perdus dans SmartScreen.
+export const trackDownloadPageViewed = (opts: {
+  locale: "en" | "fr";
+  auto: boolean;
+  hasDirectDownload: boolean;
+}) =>
+  track("download_page_viewed", {
+    locale: opts.locale,
+    auto: opts.auto,
+    hasDirectDownload: opts.hasDirectDownload,
+  });
+
+export const trackDownloadStarted = (opts: {
+  version?: string;
+  trigger: "auto" | "manual";
+}) =>
+  track("download_started", {
+    version: opts.version ?? "unknown",
+    trigger: opts.trigger,
+  });
+
+export const trackDownloadRetried = (version?: string) =>
+  track("download_retried", { version: version ?? "unknown" });
+
+/** Quelle etape du guide a ete ouverte a la main, donc laquelle bloque. */
+export const trackInstallStepSelected = (opts: {
+  step: string;
+  index: number;
+}) => track("install_step_selected", { step: opts.step, index: opts.index });
+
+export const trackChecksumCopied = (version?: string) =>
+  track("checksum_copied", { version: version ?? "unknown" });
 
 export const trackGithubClicked = (
   source: "nav" | "hero" | "footer" | "release_notes" | "version_pill"

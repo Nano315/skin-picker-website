@@ -31,6 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("/", "/fr", 1),
     { ...entry("/", "/fr", 0.9), url: `${BASE}/fr` },
+    // /download est indexable : « comment installer », « windows a protege
+    // votre ordinateur » et les requetes autour de l'avertissement SmartScreen
+    // amenent des gens qui cherchent exactement ce que cette page explique.
+    entry("/download", "/fr/download", 0.9),
+    { ...entry("/download", "/fr/download", 0.8), url: `${BASE}/fr/download` },
     entry("/safety", "/fr/safety", 0.8),
     { ...entry("/safety", "/fr/safety", 0.7), url: `${BASE}/fr/safety` },
     entry("/privacy", "/fr/privacy", 0.3),

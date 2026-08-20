@@ -22,6 +22,63 @@ export type Dict = {
     forWindows: string;
     viewReleases: string;
   };
+  downloadPage: {
+    metaTitle: string;
+    metaDescription: string;
+    eyebrow: string;
+    titleStarting: string;
+    titleStarted: string;
+    titleManual: string;
+    subtitle: string;
+    startNow: string;
+    retryQuestion: string;
+    retryCta: string;
+    noAdmin: string;
+    platform: string;
+    unavailableTitle: string;
+    unavailableBody: string;
+    why: { title: string; body: string };
+    walkthrough: {
+      eyebrow: string;
+      title: string;
+      intro: string;
+      pause: string;
+      play: string;
+      stepLabel: string;
+      // `id` pilote a la fois le rendu de la scene animee et le nom d'evenement
+      // analytics : un union litteral evite qu'un renommage cote texte casse
+      // silencieusement l'un des deux.
+      steps: Array<{
+        id: "keep" | "run" | "moreinfo" | "runanyway";
+        n: string;
+        title: string;
+        body: string;
+      }>;
+    };
+    verify: {
+      title: string;
+      intro: string;
+      fileLabel: string;
+      sizeLabel: string;
+      hashLabel: string;
+      hashHelp: string;
+      copy: string;
+      copied: string;
+      provenanceLabel: string;
+      /** Contient {tag}, remplace par le tag de la release au rendu. */
+      provenanceValue: string;
+      provenanceCta: string;
+      sourceLabel: string;
+      sourceValue: string;
+      sourceCta: string;
+      virusTotalLabel: string;
+      /** Contient {engines}, remplace par le nombre de moteurs au rendu. */
+      virusTotalClean: string;
+      virusTotalCta: string;
+    };
+    ban: { title: string; body: string; cta: string };
+    backHome: string;
+  };
   features: {
     eyebrow: string;
     titleLine1: string;
@@ -99,6 +156,14 @@ export type Dict = {
     dontRun: string;
     installed: string;
     installedNote: string;
+    browserDownloads: string;
+    browserUncommon: string;
+    browserUncommonBody: string;
+    browserKeep: string;
+    browserDelete: string;
+    browserMore: string;
+    browserKept: string;
+    browserDoubleClick: string;
   };
   languageSwitcher: {
     label: string;
@@ -140,6 +205,90 @@ const en: Dict = {
   download: {
     forWindows: "Download for Windows",
     viewReleases: "View releases on GitHub",
+  },
+  downloadPage: {
+    metaTitle: "Download Skin Picker for Windows | LoL Skin Picker",
+    metaDescription:
+      "Your download starts here, with the Windows warning explained screen by screen. Skin Picker isn't signed yet, so SmartScreen shows a red panel. Here is exactly what to click, plus the SHA-256 of the file you get.",
+    eyebrow: "Download",
+    titleStarting: "Your download is starting",
+    titleStarted: "Your download has started",
+    titleManual: "Download Skin Picker",
+    subtitle:
+      "The file is on its way. Windows will put a warning screen in front of you before it installs. Here's why that happens, and exactly what to click.",
+    startNow: "Start the download",
+    retryQuestion: "Nothing happened?",
+    retryCta: "Download it again",
+    noAdmin: "No admin rights needed",
+    platform: "Windows 10 and 11",
+    unavailableTitle: "The installer link isn't loading",
+    unavailableBody:
+      "GitHub didn't answer when this page was generated. The releases page always has the file.",
+    why: {
+      title: "Why Windows complains",
+      body: "I haven't paid for a Microsoft signing certificate yet. Windows shows that screen for every unsigned app without looking at what's inside it, so it says nothing about this one. The certificate is on the list.",
+    },
+    walkthrough: {
+      eyebrow: "Two clicks",
+      title: "What you're about to see",
+      intro:
+        "The replay below runs through the real screens, in order. Click a step to jump straight to it.",
+      pause: "Pause",
+      play: "Play",
+      stepLabel: "Step",
+      steps: [
+        {
+          id: "keep",
+          n: "01",
+          title: "Keep the file",
+          body: "Your browser may call the file uncommon, because few people have downloaded this version yet. Open the menu next to it and choose Keep.",
+        },
+        {
+          id: "run",
+          n: "02",
+          title: "Open the installer",
+          body: "Double-click the file in your downloads. Nothing has been installed at this point.",
+        },
+        {
+          id: "moreinfo",
+          n: "03",
+          title: 'Click "More info"',
+          body: "SmartScreen opens and hides the Run button behind that small link. Same screen for any unsigned app, whatever it contains.",
+        },
+        {
+          id: "runanyway",
+          n: "04",
+          title: 'Click "Run anyway"',
+          body: "The install runs on its own and the app opens. After that it updates itself, so you never come back here.",
+        },
+      ],
+    },
+    verify: {
+      title: "Check what you just downloaded",
+      intro: "None of this asks you to take my word for it.",
+      fileLabel: "File name",
+      sizeLabel: "Size",
+      hashLabel: "SHA-256",
+      hashHelp:
+        "Run Get-FileHash on the file you downloaded and compare it with this. If the two match, nothing changed on the way.",
+      copy: "Copy",
+      copied: "Copied",
+      provenanceLabel: "Built by",
+      provenanceValue: "GitHub Actions, from tag {tag}",
+      provenanceCta: "See the workflow",
+      sourceLabel: "Source",
+      sourceValue: "Public, and it's what the build compiles",
+      sourceCta: "Read it on GitHub",
+      virusTotalLabel: "VirusTotal",
+      virusTotalClean: "No detection across {engines} engines",
+      virusTotalCta: "See the VirusTotal report",
+    },
+    ban: {
+      title: "And the ban question?",
+      body: "Skin Picker goes through the League Client's own local API and can only roll skins your account already owns. It never touches a game file and never reads memory.",
+      cta: "The long answer, with sources",
+    },
+    backHome: "Back to Skin Picker",
   },
   features: {
     eyebrow: "What it does",
@@ -271,7 +420,7 @@ const en: Dict = {
   winPlaceholder: {
     title: "Windows protected your PC",
     description:
-      "Microsoft Defender SmartScreen prevented an unrecognized app from starting.",
+      "Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.",
     app: "App",
     publisher: "Publisher",
     publisherUnknown: "Unknown publisher",
@@ -280,6 +429,14 @@ const en: Dict = {
     dontRun: "Don't run",
     installed: "Installed!",
     installedNote: "The app updates itself from here.",
+    browserDownloads: "Downloads",
+    browserUncommon: "Uncommon file",
+    browserUncommonBody: "This file isn't commonly downloaded.",
+    browserKeep: "Keep",
+    browserDelete: "Delete",
+    browserMore: "More actions",
+    browserKept: "Kept",
+    browserDoubleClick: "Double-click",
   },
   languageSwitcher: {
     label: "Language",
@@ -337,6 +494,90 @@ const fr: Dict = {
   download: {
     forWindows: "Télécharger pour Windows",
     viewReleases: "Voir les releases sur GitHub",
+  },
+  downloadPage: {
+    metaTitle: "Télécharger Skin Picker pour Windows | LoL Skin Picker",
+    metaDescription:
+      "Le téléchargement démarre ici, avec l'avertissement Windows expliqué écran par écran. Skin Picker n'est pas encore signé, donc SmartScreen affiche un panneau rouge. Voilà exactement quoi cliquer, et l'empreinte SHA-256 du fichier.",
+    eyebrow: "Téléchargement",
+    titleStarting: "Ton téléchargement démarre",
+    titleStarted: "Ton téléchargement a démarré",
+    titleManual: "Télécharger Skin Picker",
+    subtitle:
+      "Le fichier arrive. Windows va te mettre un écran d'avertissement devant avant l'installation. Voilà pourquoi, et exactement quoi cliquer.",
+    startNow: "Lancer le téléchargement",
+    retryQuestion: "Il ne s'est rien passé ?",
+    retryCta: "Relancer le téléchargement",
+    noAdmin: "Aucun droit administrateur demandé",
+    platform: "Windows 10 et 11",
+    unavailableTitle: "Le lien de l'installateur ne remonte pas",
+    unavailableBody:
+      "GitHub n'a pas répondu au moment où cette page a été générée. La page des releases a toujours le fichier.",
+    why: {
+      title: "Pourquoi Windows râle",
+      body: "Je n'ai pas encore payé de certificat de signature Microsoft. Windows affiche cet écran pour toute app non signée sans regarder ce qu'elle contient, donc il ne dit rien sur celle-ci. Le certificat est prévu.",
+    },
+    walkthrough: {
+      eyebrow: "Deux clics",
+      title: "Ce que tu vas voir",
+      intro:
+        "La rediffusion ci-dessous rejoue les vrais écrans, dans l'ordre. Clique sur une étape pour y aller directement.",
+      pause: "Pause",
+      play: "Lire",
+      stepLabel: "Étape",
+      steps: [
+        {
+          id: "keep",
+          n: "01",
+          title: "Garde le fichier",
+          body: "Ton navigateur peut trouver le fichier inhabituel, parce que peu de monde a encore téléchargé cette version. Ouvre le menu à côté et choisis Conserver.",
+        },
+        {
+          id: "run",
+          n: "02",
+          title: "Ouvre l'installateur",
+          body: "Double-clique sur le fichier dans tes téléchargements. À ce stade, rien n'est installé.",
+        },
+        {
+          id: "moreinfo",
+          n: "03",
+          title: "Clique sur « Informations complémentaires »",
+          body: "SmartScreen s'ouvre et planque le bouton derrière ce petit lien. C'est le même écran pour toute app non signée, quel que soit son contenu.",
+        },
+        {
+          id: "runanyway",
+          n: "04",
+          title: "Clique sur « Exécuter quand même »",
+          body: "L'installation se fait toute seule et l'app s'ouvre. Ensuite elle se met à jour d'elle-même, donc tu ne repasses plus par là.",
+        },
+      ],
+    },
+    verify: {
+      title: "Vérifier ce que tu viens de télécharger",
+      intro: "Rien ici ne te demande de me croire sur parole.",
+      fileLabel: "Nom du fichier",
+      sizeLabel: "Taille",
+      hashLabel: "SHA-256",
+      hashHelp:
+        "Lance Get-FileHash sur le fichier téléchargé et compare avec celle-ci. Si les deux correspondent, rien n'a bougé en route.",
+      copy: "Copier",
+      copied: "Copié",
+      provenanceLabel: "Compilé par",
+      provenanceValue: "GitHub Actions, depuis le tag {tag}",
+      provenanceCta: "Voir le workflow",
+      sourceLabel: "Code source",
+      sourceValue: "Public, et c'est lui que le build compile",
+      sourceCta: "Le lire sur GitHub",
+      virusTotalLabel: "VirusTotal",
+      virusTotalClean: "Aucune détection sur {engines} moteurs",
+      virusTotalCta: "Voir le rapport VirusTotal",
+    },
+    ban: {
+      title: "Et la question du ban ?",
+      body: "Skin Picker passe par l'API locale du client League et ne peut tirer que des skins que ton compte possède déjà. Il ne touche aucun fichier de jeu et ne lit aucune mémoire.",
+      cta: "La réponse longue, avec les sources",
+    },
+    backHome: "Retour à Skin Picker",
   },
   features: {
     eyebrow: "Ce qu'il fait",
@@ -465,10 +706,10 @@ const fr: Dict = {
       "Skin Picker isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.",
   },
   winPlaceholder: {
-    title: "Windows a protégé votre PC",
+    title: "Windows a protégé votre ordinateur",
     description:
-      "Microsoft Defender SmartScreen a empêché une app non reconnue de démarrer.",
-    app: "App",
+      "Microsoft Defender SmartScreen a empêché le démarrage d'une application non reconnue. L'exécution de cette application peut mettre votre ordinateur en danger.",
+    app: "Application",
     publisher: "Éditeur",
     publisherUnknown: "Éditeur inconnu",
     moreInfo: "Informations complémentaires",
@@ -476,6 +717,14 @@ const fr: Dict = {
     dontRun: "Ne pas exécuter",
     installed: "Installé !",
     installedNote: "L'app se met à jour toute seule à partir de là.",
+    browserDownloads: "Téléchargements",
+    browserUncommon: "Fichier inhabituel",
+    browserUncommonBody: "Ce fichier n'est pas téléchargé couramment.",
+    browserKeep: "Conserver",
+    browserDelete: "Supprimer",
+    browserMore: "Plus d'actions",
+    browserKept: "Conservé",
+    browserDoubleClick: "Double-clic",
   },
   languageSwitcher: {
     label: "Langue",
